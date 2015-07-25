@@ -1,0 +1,52 @@
+* {
+}
+#epic-title {
+	font-size: 3em;
+	padding-bottom: 1.5em;
+}
+#seed-name, #randomize-button {
+	margin-bottom:2em;
+}
+html,body {
+	width:100%;
+	height:100%;
+	margin:0;
+}
+html {
+	display:table;
+}
+body {
+	font-family: 'MedievalSharp', cursive;
+	text-align: center;
+
+	background-color: #D2B876;
+	color: rgba(61, 44, 12, .8);
+	text-shadow: 1px 1px 1px rgba(61, 44, 12, .3);
+	background-image: url('../media/vellum.jpg');
+	background-size: 101% 100%;
+	
+	display:table-cell;
+	vertical-align: middle;
+}
+#randomize-button {
+	background-color: #D2B876;
+	box-shadow: 1px 1px 1px rgba(61, 44, 12, .3), -1px -1px 1px rgba(61, 44, 12, .3) inset;
+	color: rgba(61, 44, 12, .8);
+	padding:6px 12px;
+    -webkit-transition: .5s; /* Safari */
+    transition: .5s;
+}
+#randomize-button:hover {
+	cursor: pointer;
+	box-shadow: 2px 2px 2px rgba(61, 44, 12, .3), -2px -2px 2px rgba(61, 44, 12, .3) inset;
+	text-shadow: 2px 2px 2px rgba(61, 44, 12, .3);
+}
+
+::selection {
+  background: RGBA(203, 80, 59, .5); /* WebKit/Blink Browsers */
+  background: RGBA(213, 32, 0, .5);
+}
+::-moz-selection {
+  background: RGBA(203, 80, 59, .5); /* Gecko Browsers */
+  background: RGBA(213, 32, 0, .5);
+}
