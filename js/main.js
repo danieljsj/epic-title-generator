@@ -64,14 +64,14 @@ function randomize() {
 
 	// PER-ELEMENT USAGE:
 	var elements = [
-		{ id: 'position-article'				, text: texts['positionArticle'] },
+		{ id: 'position-article'			, text: texts['positionArticle'] },
 		{ id: 'position-adjective'			, text: texts['positionAdjective'] },
 		{ id: 'position-noun'				, text: texts['positionNoun'] },
 		{ id: 'position-domain-preposition'	, text: texts['positionDomainPreposition'] },
-		{ id: 'domain-adjective'				, text: texts['domainAdjective'] },
+		{ id: 'domain-adjective'			, text: texts['domainAdjective'] },
 		{ id: 'domain-noun'					, text: texts['domainNoun'] },
 		{ id: 'domain-concept-preposition'	, text: texts['domainConceptPreposition'] },
-		{ id: 'concept-noun'					, text: texts['conceptNoun'] }
+		{ id: 'concept-noun'				, text: texts['conceptNoun'] }
 	];
 	for (var i = 0; i < elements.length; i++) {
 		// sets the text of each browser element

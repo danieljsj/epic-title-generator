@@ -1,7 +1,9 @@
 var wordBank = {
+
 	positionArticles: [
 		{word: "The"}
 	],
+	
 	positionAdjectives: [
 		{word: "Beloved"},
 		{word: "Blessed"},
@@ -33,6 +35,7 @@ var wordBank = {
 		{word: "Wise"},
 		{word: "Mad"}
 	],
+	
 	positionNouns: [
 		{word: "Assassin", 		gender:""},
 		{word: "Baron", 		gender:""},
@@ -84,9 +87,11 @@ var wordBank = {
 		{word: "Monk", 			gender:""},
 		{word: "Warlock", 		gender:""}
 	],
+	
 	positionDomainPrepositions: [
 		{word: "of the" }
 	],
+	
 	domainAdjectives: [
 		{word: "Ancient", 		isPlural: null },
 		{word: "Black", 		isPlural: null },
@@ -125,6 +130,7 @@ var wordBank = {
 		{word: "White", 		isPlural: null },
 		{word: "Cursed", 		isPlural: null },
 	],
+	
 	domainNouns: [
 		{singular: "Army"		, plural: "Armies"},
 		{singular: "Band"		, plural: "Bands"},
@@ -172,9 +178,11 @@ var wordBank = {
 		{singular: "Tome"		, plural: "Tomes"},
 		{singular: "Gem"		, plural: "Gems"}
 	],
+	
 	domainConceptPrepositions: [
 		{word: "of"}
 	],
+	
 	conceptNouns: [
 		{word: "Battle"},
 		{word: "Beauty"},
