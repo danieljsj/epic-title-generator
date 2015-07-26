@@ -1,13 +1,13 @@
 // note that wordBank va-riable is available
 
 
+console.log("\r\n wordBank: "); console.log(wordBank);
 
 function randomize() {
 
 	// REFERENCE:
 	
 	// alert("hey you should write an actual randomize func...");
-	console.log("wordBank: "); console.log(wordBank);
 
 	var randomizationAudio = new Audio('media/randomize.wav');
 	randomizationAudio.play();
@@ -29,41 +29,63 @@ function randomize() {
 
 
 
-	// STARTERS:
+	// TEXT PROCESSING:
+	
+	var texts = [];
 
 	// Position Article
-	var positionArticleText = wordBank.positionArticles[0].word;
-	document.getElementById('position-article').innerHTML = positionArticleText;
+	texts['positionArticle'] = wordBank.positionArticles[0].word;
 		
 	// Position Adjective
-	var positionAdjectiveText = wordBank.positionAdjectives[0].word;
-	document.getElementById('position-adjective').innerHTML = positionAdjectiveText;
+	texts['positionAdjective'] = wordBank.positionAdjectives[0].word;
 		
 	// Position Noun
-	var positionNounText = wordBank.positionNouns[0].word;
-	document.getElementById('position-noun').innerHTML = positionNounText;
+	texts['positionNoun'] = wordBank.positionNouns[0].word;
 		
 	// Position-Domain Preposition
-	var positionDomainPrepositionText = wordBank.positionDomainPrepositions[0].word;
-	document.getElementById('position-domain-preposition').innerHTML = positionDomainPrepositionText;
+	texts['positionDomainPreposition'] = wordBank.positionDomainPrepositions[0].word;
 		
 	// Domain Adjective
-	var domainAdjectiveText = wordBank.domainAdjectives[0].word;
-	document.getElementById('domain-adjective').innerHTML = domainAdjectiveText;
+	texts['domainAdjective'] = wordBank.domainAdjectives[0].word;
 		
 	// Domain Noun
-	var domainNounText = wordBank.domainNouns[0].singular + "/" + wordBank.domainNouns[0].plural;
-	document.getElementById('domain-noun').innerHTML = domainNounText;
+	texts['domainNoun'] = wordBank.domainNouns[0].singular + "/" + wordBank.domainNouns[0].plural;
 		
 	// Domain-Concept Preposition
-	var domainConceptPrepositionText = wordBank.domainConceptPrepositions[0].word;
-	document.getElementById('domain-concept-preposition').innerHTML = domainConceptPrepositionText;
+	texts['domainConceptPreposition'] = wordBank.domainConceptPrepositions[0].word;
 		
 	// Concept Noun
-	var conceptNounText = wordBank.conceptNouns[0].word;
-	document.getElementById('concept-noun').innerHTML = conceptNounText;
+	texts['conceptNoun'] = wordBank.conceptNouns[0].word;
+	
 
 
+	// TEXT COMPILATION AND USAGE:
 
-	// dsj todo: first image result from google: http://googlecode.blogspot.in/2012/02/image-results-now-available-from-custom.html
+
+	// PER-ELEMENT USAGE:
+	var elements = [
+		{ id: 'position-article'				, text: texts['positionArticle'] },
+		{ id: 'position-adjective'			, text: texts['positionAdjective'] },
+		{ id: 'position-noun'				, text: texts['positionNoun'] },
+		{ id: 'position-domain-preposition'	, text: texts['positionDomainPreposition'] },
+		{ id: 'domain-adjective'				, text: texts['domainAdjective'] },
+		{ id: 'domain-noun'					, text: texts['domainNoun'] },
+		{ id: 'domain-concept-preposition'	, text: texts['domainConceptPreposition'] },
+		{ id: 'concept-noun'					, text: texts['conceptNoun'] }
+	];
+	for (var i = 0; i < elements.length; i++) {
+		// sets the text of each browser element
+		document.getElementById(elements[i].id).innerHTML = elements[i].text;
+	};
+
+	// WHOLE TEXT-GLOB USAGE:
+	// var fullTitleText = '';
+	// for (var i = 0; i < elements.length; i++) {
+	// 	fullTitleText += texts[i].text + ' ';
+	// };
+	// fullTitleText = fullTitleText.trim();
+	// document.getElementById('epic-title').innerHTML = fullTitleText;
+
+	
+	// dsj todo: first image result from google (based on fullTitleText): http://googlecode.blogspot.in/2012/02/image-results-now-available-from-custom.html
 }
