@@ -34,29 +34,31 @@ function randomize() {
 	var texts = [];
 
 	// Position Article
-	texts['positionArticle'] = wordBank.positionArticles[0].word;
+	texts.positionArticle = wordBank.positionArticles[0].word;
 		
 	// Position Adjective
-	texts['positionAdjective'] = wordBank.positionAdjectives[0].word;
+	texts.positionAdjective = wordBank.positionAdjectives[0].word;
 		
 	// Position Noun
-	texts['positionNoun'] = wordBank.positionNouns[0].word;
+	texts.positionNoun = wordBank.positionNouns[0].word;
 		
 	// Position-Domain Preposition
-	texts['positionDomainPreposition'] = wordBank.positionDomainPrepositions[0].word;
+	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[0].word;
 		
 	// Domain Adjective
-	texts['domainAdjective'] = wordBank.domainAdjectives[0].word;
+	texts.domainAdjective = wordBank.domainAdjectives[0].word;
 		
 	// Domain Noun
-	texts['domainNoun'] = wordBank.domainNouns[0].singular + "/" + wordBank.domainNouns[0].plural;
+	texts.domainNoun = wordBank.domainNouns[0].singular + "/" + wordBank.domainNouns[0].plural;
 		
 	// Domain-Concept Preposition
-	texts['domainConceptPreposition'] = wordBank.domainConceptPrepositions[0].word;
+	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[0].word;
 		
 	// Concept Noun
-	texts['conceptNoun'] = wordBank.conceptNouns[0].word;
+	texts.conceptNoun = wordBank.conceptNouns[0].word;
 	
+
+	console.log(texts);
 
 
 	// TEXT COMPILATION AND USAGE:
@@ -64,14 +66,14 @@ function randomize() {
 
 	// PER-ELEMENT USAGE:
 	var elements = [
-		{ id: 'position-article'			, text: texts['positionArticle'] },
-		{ id: 'position-adjective'			, text: texts['positionAdjective'] },
-		{ id: 'position-noun'				, text: texts['positionNoun'] },
-		{ id: 'position-domain-preposition'	, text: texts['positionDomainPreposition'] },
-		{ id: 'domain-adjective'			, text: texts['domainAdjective'] },
-		{ id: 'domain-noun'					, text: texts['domainNoun'] },
-		{ id: 'domain-concept-preposition'	, text: texts['domainConceptPreposition'] },
-		{ id: 'concept-noun'				, text: texts['conceptNoun'] }
+		{ id: 'position-article'			, text: texts.positionArticle },
+		{ id: 'position-adjective'			, text: texts.positionAdjective },
+		{ id: 'position-noun'				, text: texts.positionNoun },
+		{ id: 'position-domain-preposition'	, text: texts.positionDomainPreposition },
+		{ id: 'domain-adjective'			, text: texts.domainAdjective },
+		{ id: 'domain-noun'					, text: texts.domainNoun },
+		{ id: 'domain-concept-preposition'	, text: texts.domainConceptPreposition },
+		{ id: 'concept-noun'				, text: texts.conceptNoun }
 	];
 	for (var i = 0; i < elements.length; i++) {
 		// sets the text of each browser element

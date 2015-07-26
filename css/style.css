@@ -22,7 +22,7 @@ body {
 	background-color: #D2B876;
 	color: rgba(61, 44, 12, .8);
 	text-shadow: 1px 1px 1px rgba(61, 44, 12, .3);
-	background-image: url('../media/vellum.jpg');
+	background-image: url("../media/vellum.jpg");
 	background-size: 101% 100%;
 	
 	display:table-cell;
