@@ -30,7 +30,7 @@
 	<div id="controls">
 		<div id="seed-name">
 			<label>Your Name: <input id="seed" type="text" value="" onchange="console.log(this);"></label>
-			<button onclick="randomize($('#seed').val().toLowerCase())">Seeded Random</button>
+			<button onclick="seededRandom()">Seeded Random</button>
 		</div>
 		<span id="randomize-button" onclick="randomize()">Pure Random</span>
 	</div>

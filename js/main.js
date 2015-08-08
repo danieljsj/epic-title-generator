@@ -116,3 +116,21 @@ function randomize(seed) {
 	
 	// dsj todo: first image result from google (based on fullTitleText): http://googlecode.blogspot.in/2012/02/image-results-now-available-from-custom.html
 }
+
+
+
+
+
+$('#seed').keypress(function (e) { // FAILING
+  if (e.which == 13) {
+    seededRandom();
+    return false;
+  }
+});
+
+
+function seededRandom(){
+	randomize(
+		$('#seed').val().toLowerCase()
+	);
+}
