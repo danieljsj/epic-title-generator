@@ -1,7 +1,7 @@
 // note that wordBank va-riable is available
 
 
-console.log("\r\n wordBank: "); console.log(wordBank);
+console.log("\i\n wordBank: "); console.log(wordBank);
 
 new Audio('media/randomize.wav'); // just to get the file to pre-download
 
@@ -37,46 +37,46 @@ function randomize() {
 	var texts = [];
 
 	// Position Article
-	r = Math.floor(Math.random()*wordBank.positionArticles.length);
-	texts.positionArticle = wordBank.positionArticles[r].word;
+	i = Math.floor(Math.random()*wordBank.positionArticles.length);
+	texts.positionArticle = wordBank.positionArticles[i].word;
 		
 	// Position Adjective
-	r = Math.floor(Math.random()*wordBank.positionAdjectives.length);
-	texts.positionAdjective = wordBank.positionAdjectives[r].word;
+	i = Math.floor(Math.random()*wordBank.positionAdjectives.length);
+	texts.positionAdjective = wordBank.positionAdjectives[i].word;
 		
 	// Position Noun
-	r = Math.floor(Math.random()*wordBank.positionNouns.length);
-	texts.positionNoun = wordBank.positionNouns[r].word;
+	i = Math.floor(Math.random()*wordBank.positionNouns.length);
+	texts.positionNoun = wordBank.positionNouns[i].word;
 		
 	// Position-Domain Preposition
-	r = Math.floor(Math.random()*wordBank.positionDomainPrepositions.length);
-	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[r].word;
+	i = Math.floor(Math.random()*wordBank.positionDomainPrepositions.length);
+	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[i].word;
 		
 	// Domain Adjective
-	r = Math.floor(Math.random()*wordBank.domainAdjectives.length);
-	var domainAdjective = wordBank.domainAdjectives[r]
+	i = Math.floor(Math.random()*wordBank.domainAdjectives.length);
+	var domainAdjective = wordBank.domainAdjectives[i]
 	texts.domainAdjective = domainAdjective.word;
 		
 	// Domain Noun
-	r = Math.floor(Math.random()*wordBank.domainNouns.length);
+	i = Math.floor(Math.random()*wordBank.domainNouns.length);
 	if ( null === domainAdjective.isPlural ){
 		var isPlural = Math.random() > .5;
 	} else {
 		var isPlural = domainAdjective.isPlural;
 	}
 	if ( isPlural ){
-		texts.domainNoun = wordBank.domainNouns[r].plural;		
+		texts.domainNoun = wordBank.domainNouns[i].plural;		
 	} else {
-		texts.domainNoun = wordBank.domainNouns[r].singular;		
+		texts.domainNoun = wordBank.domainNouns[i].singular;		
 	}
 			
 	// Domain-Concept Preposition
-	r = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
-	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[r].word;
+	i = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
+	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[i].word;
 		
 	// Concept Noun
-	r = Math.floor(Math.random()*wordBank.conceptNouns.length);
-	texts.conceptNoun = wordBank.conceptNouns[r].word;
+	i = Math.floor(Math.random()*wordBank.conceptNouns.length);
+	texts.conceptNoun = wordBank.conceptNouns[i].word;
 	
 
 	console.log(texts);
