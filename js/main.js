@@ -65,6 +65,7 @@ function randomize() {
 	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[r].word;
 		
 	// Concept Noun
+	r = Math.floor(Math.random()*wordBank.conceptNouns.length);
 	texts.conceptNoun = wordBank.conceptNouns[r].word;
 	
 
