@@ -38,49 +38,90 @@ function randomize(seed) {
 
 	// TEXT PROCESSING:
 	
-	var texts = [];
+	var texts = {};
+
+	var p = 0;
 
 	// Position Article
-	i = Math.floor(Math.random()*wordBank.positionArticles.length);
-	texts.positionArticle = wordBank.positionArticles[i].word;
+	p = 1;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.positionArticles.length);
+		texts.positionArticle = wordBank.positionArticles[i].word;
+	} else {
+		texts.positionArticle = '';
+	}
 		
 	// Position Adjective
-	i = Math.floor(Math.random()*wordBank.positionAdjectives.length);
-	texts.positionAdjective = wordBank.positionAdjectives[i].word;
+	p = .75;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.positionAdjectives.length);
+		texts.positionAdjective = wordBank.positionAdjectives[i].word;
+	} else {
+		texts.positionAdjective ='';
+	}
 		
 	// Position Noun
-	i = Math.floor(Math.random()*wordBank.positionNouns.length);
-	texts.positionNoun = wordBank.positionNouns[i].word;
+	p = 1;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.positionNouns.length);
+		texts.positionNoun = wordBank.positionNouns[i].word;
+	} else {
+		texts.positionNoun = '';
+	}
 		
 	// Position-Domain Preposition
-	i = Math.floor(Math.random()*wordBank.positionDomainPrepositions.length);
-	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[i].word;
+	p = 1;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.positionDomainPrepositions.length);
+		texts.positionDomainPreposition = wordBank.positionDomainPrepositions[i].word;
+	} else {
+		texts.positionDomainPreposition = '';
+	}
 		
 	// Domain Adjective
-	i = Math.floor(Math.random()*wordBank.domainAdjectives.length);
-	var domainAdjective = wordBank.domainAdjectives[i]
-	texts.domainAdjective = domainAdjective.word;
+	p = .75;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.domainAdjectives.length);
+		var domainAdjective = wordBank.domainAdjectives[i]
+		texts.domainAdjective = domainAdjective.word;
+	} else {
+		texts.domainAdjective = '';		
+	}
 		
 	// Domain Noun
-	i = Math.floor(Math.random()*wordBank.domainNouns.length);
-	if ( null === domainAdjective.isPlural ){
-		var isPlural = Math.random() > .5;
+	p = 1;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.domainNouns.length);
+		if ( ( ! texts.domainAdjective ) || null === domainAdjective.isPlural ){
+			var isPlural = Math.random() > .5;
+		} else {
+			var isPlural = domainAdjective.isPlural;
+		}
+		if ( isPlural ){
+			texts.domainNoun = wordBank.domainNouns[i].plural;		
+		} else {
+			texts.domainNoun = wordBank.domainNouns[i].singular;		
+		}
 	} else {
-		var isPlural = domainAdjective.isPlural;
-	}
-	if ( isPlural ){
-		texts.domainNoun = wordBank.domainNouns[i].plural;		
-	} else {
-		texts.domainNoun = wordBank.domainNouns[i].singular;		
+		texts.domainNoun = '';				
 	}
 			
 	// Domain-Concept Preposition
-	i = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
-	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[i].word;
+	p = .75;
+	if (Math.random() < p){
+		i = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
+		texts.domainConceptPreposition = wordBank.domainConceptPrepositions[i].word;
+	} else {
+		texts.domainConceptPreposition = '';		
+	}
 		
 	// Concept Noun
-	i = Math.floor(Math.random()*wordBank.conceptNouns.length);
-	texts.conceptNoun = wordBank.conceptNouns[i].word;
+	if (texts.domainConceptPreposition){
+		i = Math.floor(Math.random()*wordBank.conceptNouns.length);
+		texts.conceptNoun = wordBank.conceptNouns[i].word;
+	} else {
+		texts.conceptNoun = '';		
+	}
 	
 
 	console.log(texts);
