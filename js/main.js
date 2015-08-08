@@ -3,6 +3,10 @@
 
 console.log("\r\n wordBank: "); console.log(wordBank);
 
+new Audio('media/randomize.wav'); // just to get the file to pre-download
+
+
+
 function randomize() {
 
 	// REFERENCE:
