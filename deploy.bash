@@ -19,3 +19,5 @@ find . -type f -print0 | xargs -0 chmod -v 0644 # for files
 '"
 
 echo
+echo "app is now visible at http://10x.agency/games/epic-title-generator/"
+echo
