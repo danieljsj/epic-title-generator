@@ -18,13 +18,13 @@ function randomize() {
 
 	// EXAMPLES:
 	
-	// random ("float"(decimal)) number between zero and one
+	// //random ("float"(decimal)) number between zero and one
 	// alert('Math.random() : '+Math.random()); 
 	
-	// random integer between zero and 100 (NOTE: 0 and 100 are each half as likely as every other number, because they only get rounded to from a single .5 range, rather than 2 .5 ranges.)
-	// alert('Math.round(Math.random()*100) : '+Math.round(Math.random()*100)); 
+	// //random integer between zero and 100 (NOTE: 0 and 100 are each half as likely as every other number, because they only get rounded to from a single .5 range, rather than 2 .5 ranges.)
+	// alert('Math.round(Math.random()*100) : '+Math.floor(Math.random()*100)); 
 	
-	// conditional
+	// //conditional
 	// if (Math.random() > .5 ) { 
 	// 	alert('Math.random() was greater than .5')
 	// } else { 
@@ -32,34 +32,40 @@ function randomize() {
 	// }
 
 
-
 	// TEXT PROCESSING:
 	
 	var texts = [];
 
 	// Position Article
-	texts.positionArticle = wordBank.positionArticles[0].word;
+	r = Math.floor(Math.random()*wordBank.positionArticles.length);
+	texts.positionArticle = wordBank.positionArticles[r].word;
 		
 	// Position Adjective
-	texts.positionAdjective = wordBank.positionAdjectives[0].word;
+	r = Math.floor(Math.random()*wordBank.positionAdjectives.length);
+	texts.positionAdjective = wordBank.positionAdjectives[r].word;
 		
 	// Position Noun
-	texts.positionNoun = wordBank.positionNouns[0].word;
+	r = Math.floor(Math.random()*wordBank.positionNouns.length);
+	texts.positionNoun = wordBank.positionNouns[r].word;
 		
 	// Position-Domain Preposition
-	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[0].word;
+	r = Math.floor(Math.random()*wordBank.positionDomainPrepositions.length);
+	texts.positionDomainPreposition = wordBank.positionDomainPrepositions[r].word;
 		
 	// Domain Adjective
-	texts.domainAdjective = wordBank.domainAdjectives[0].word;
+	r = Math.floor(Math.random()*wordBank.domainAdjectives.length);
+	texts.domainAdjective = wordBank.domainAdjectives[r].word;
 		
 	// Domain Noun
-	texts.domainNoun = wordBank.domainNouns[0].singular + "/" + wordBank.domainNouns[0].plural;
+	r = Math.floor(Math.random()*wordBank.domainNouns.length);
+	texts.domainNoun = wordBank.domainNouns[r].singular + "/" + wordBank.domainNouns[r].plural;
 		
 	// Domain-Concept Preposition
-	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[0].word;
+	r = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
+	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[r].word;
 		
 	// Concept Noun
-	texts.conceptNoun = wordBank.conceptNouns[0].word;
+	texts.conceptNoun = wordBank.conceptNouns[r].word;
 	
 
 	console.log(texts);
