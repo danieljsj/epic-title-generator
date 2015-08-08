@@ -7,7 +7,11 @@ new Audio('media/randomize.wav'); // just to get the file to pre-download
 
 
 
-function randomize() {
+function randomize(seed) {
+
+	if (seed){
+		Math.seedrandom(seed);
+	}
 
 	// REFERENCE:
 	

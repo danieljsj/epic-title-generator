@@ -1,6 +1,11 @@
 <html>
 <head>
 	<title>Epic Title / Fantasy Name Generator</title>
+	<!-- Libraries -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js">
+</script>
+	<script src="//code.jquery.com/jquery-2.1.4.js"></script>
+	<!-- Scripts -->
 	<script type="text/javascript" src="js/word-bank.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -23,10 +28,11 @@
 		</div>
 	</div>
 	<div id="controls">
-		<!-- <div id="seed-name">
-			<label>Your Name: <input type="text" value=""></label>
-		</div> -->
-		<span id="randomize-button" onclick="randomize()">Randomize</span>
+		<div id="seed-name">
+			<label>Your Name: <input id="seed" type="text" value="" onchange="console.log(this);"></label>
+			<button onclick="randomize($('#seed').val().toLowerCase())">Seeded Random</button>
+		</div>
+		<span id="randomize-button" onclick="randomize()">Pure Random</span>
 	</div>
 </body>
 </html>
