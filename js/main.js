@@ -54,12 +54,22 @@ function randomize() {
 		
 	// Domain Adjective
 	r = Math.floor(Math.random()*wordBank.domainAdjectives.length);
-	texts.domainAdjective = wordBank.domainAdjectives[r].word;
+	var domainAdjective = wordBank.domainAdjectives[r]
+	texts.domainAdjective = domainAdjective.word;
 		
 	// Domain Noun
 	r = Math.floor(Math.random()*wordBank.domainNouns.length);
-	texts.domainNoun = wordBank.domainNouns[r].singular + "/" + wordBank.domainNouns[r].plural;
-		
+	if ( null === domainAdjective.isPlural ){
+		var isPlural = Math.random() > .5;
+	} else {
+		var isPlural = domainAdjective.isPlural;
+	}
+	if ( isPlural ){
+		texts.domainNoun = wordBank.domainNouns[r].plural;		
+	} else {
+		texts.domainNoun = wordBank.domainNouns[r].singular;		
+	}
+			
 	// Domain-Concept Preposition
 	r = Math.floor(Math.random()*wordBank.domainConceptPrepositions.length);
 	texts.domainConceptPreposition = wordBank.domainConceptPrepositions[r].word;
