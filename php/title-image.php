@@ -2,24 +2,6 @@
 
 
 
-This is not working because:
-
-Call to undefined function imagettfbbox...
-
-ttf not supported on mac. 
-
-thanks, apple! Dork.
-
-FreeType, and PNG, not supported.
-
-So, gotta use Linux.
-
-
-
-
-
-
-
 
 // link to the font file no the server
 $fontname = 'fonts/Capriola-Regular.ttf';
@@ -34,29 +16,29 @@ function create_image($user){
     global $quality;
     $file = "covers/".md5($user[0]['name'].$user[1]['name'].$user[2]['name']).".jpg";
 
-// if the file already exists dont create it again just serve up the original
+    // if the file already exists dont create it again just serve up the original
     if (!file_exists($file)) {
 
-// define the base image that we lay our text on
+    // define the base image that we lay our text on
         $im = imagecreatefromjpeg("pass.jpg");
 
-// setup the text colours
+        // setup the text colours
         $color['grey'] = imagecolorallocate($im, 54, 56, 60);
         $color['green'] = imagecolorallocate($im, 55, 189, 102);
 
-// this defines the starting height for the text block
+        // this defines the starting height for the text block
         $y = imagesy($im) - $height - 365;
 
-// loop through the array and write the text
+        // loop through the array and write the text
         foreach ($user as $value){
-// center the text in our image - returns the x value
+            // center the text in our image - returns the x value
             $x = center_text($value['name'], $value['font-size']);
             imagettftext($im, $value['font-size'], 0, $x, $y+$i, $color[$value['color']], $fontname,$value['name']);
-// add 32px to the line height for the next text block
+            // add 32px to the line height for the next text block
             $i = $i+32;
 
         }
-// create the image
+        // create the image
         imagejpeg($im, $file, $quality);
 
     }
