@@ -1,4 +1,4 @@
-<pre><?php 
+<?php 
 
 class TitleImage {
 
@@ -42,15 +42,14 @@ class TitleImage {
 		
 		$titleImageFilename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".png";
 
-		if ( true || !file_exists($titleImageFilename)) {
+		if ( /*true || */!file_exists($titleImageFilename)) {
 			$dirPath = "title-images/".$layout->imgFolderSlug.'/';
 			if( !is_dir($dirPath) ){
 				mkdir($dirPath); chmod($dirPath, 0777);
 			}
 
 			$newImg = imagecreatefrompng($layout->bkgImgPath);
-			var_dump($newImg);
-
+			
 			// verify background image dimensions
 			if ( ! imagesy($newImg) == $layout->titleImageHeight ) {
 				error_log('$layout->titleImageHeight: '.$layout->titleImageHeight.' imagesy($newImg): '.imagesy($newImg));
@@ -150,8 +149,7 @@ $layoutKey = ( isset($_GET['layout']) ? $_GET['layout'] : 'facebook' );
 
 if ($titleStr) {
 	$src = TitleImage::getImgSrc($titleStr, $layoutKey);
-	var_dump($src);
-	echo "<img src='$src' />";
+	echo $src;
 } else {
 	throw new Exception('Error Processing Request; no "epic_title" value was present in the requested url', 1);
 }
