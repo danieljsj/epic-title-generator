@@ -164,11 +164,15 @@ function randomize(seed) {
 
 
 
-$('#seed').keypress(function (e) { // FAILING
-  if (e.which == 13) {
-    seededRandom();
-    return false;
-  }
+
+$(document).ready(function (){
+	alert('document ready');
+	$('#seed').keypress(function (e) { // FAILING
+	  if (e.which == 13) {
+	    seededRandom();
+	    return false;
+	  }
+	});
 });
 
 
