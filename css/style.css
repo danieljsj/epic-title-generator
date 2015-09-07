@@ -56,7 +56,7 @@ html {
 	display:table;
 }
 body {
-	font-family: 'MedievalSharp', cursive;
+	font-family: 'MedievalSharp', cursive, serif;
 	text-align: center;
 
 	background-color: #D2B876;
@@ -77,11 +77,11 @@ body {
     -webkit-transition: .5s;
     transition: .5s;
 }*/
-#randomize-button:hover {
+/*#randomize-button:hover {
 	cursor: pointer;
 	box-shadow: 2px 2px 2px rgba(61, 44, 12, .3), -2px -2px 2px rgba(61, 44, 12, .3) inset;
 	text-shadow: 2px 2px 2px rgba(61, 44, 12, .3);
-}
+}*/
 
 ::selection {
   background: RGBA(203, 80, 59, .5); /* WebKit/Blink Browsers */

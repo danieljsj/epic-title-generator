@@ -176,7 +176,10 @@ $(document).ready(function (){
 
 
 function seededRandom(){
-	randomize(
-		$('#seed').val().toLowerCase()
-	);
+	var seed = $('#seed').val().toLowerCase();
+	if (seed) {
+		randomize(seed)
+	} else {
+		alert("Please enter your name to enable seeded random.");
+	}
 }
