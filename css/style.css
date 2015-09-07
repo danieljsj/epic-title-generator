@@ -2,16 +2,38 @@
 }
 #epic-title {
 	font-size: 3em;
-	padding-bottom: 1.5em;
-	width:600px;
+	padding: 1.5em;
+	padding: 1.5em 3.5em;
+	width:700px;
+	min-height: 375px;
 	max-width: 100%;
 	margin:auto;
 
-	background-image:url(../media/google.png);
+/*	background-image:url(../media/banner.png);
 	background-size: contain;
+	background-size: 100% 100%;
 	background-position: center center;
-	background-repeat:no-repeat;
+	background-repeat:no-repeat;*/
 }
+
+#epic-title {
+    position: relative;
+    overflow: hidden;
+}
+#epic-title b {
+    /*padding: 200px;*/
+    position: relative;
+    z-index: 2;
+} 
+#epic-title img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
 #seed-name, #randomize-button {
 	margin-bottom:2em;
 }
