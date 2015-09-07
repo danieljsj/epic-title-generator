@@ -33,7 +33,15 @@ function create_image($user){
         foreach ($user as $value){
             // center the text in our image - returns the x value
             $x = center_text($value['name'], $value['font-size']);
-            imagettftext($im, $value['font-size'], 0, $x, $y+$i, $color[$value['color']], $fontname,$value['name']);
+            imagettftext(
+                $im, 
+                $value['font-size'], 
+                0, 
+                $x, 
+                $y+$i, 
+                $color[$value['color']], 
+                $fontname,$value['name']
+            );
             // add 32px to the line height for the next text block
             $i = $i+32;
 
