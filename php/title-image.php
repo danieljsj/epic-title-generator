@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 // link to the font file no the server
 $fontname = 'fonts/Capriola-Regular.ttf';
 // controls the spacing between text
@@ -10,11 +8,13 @@ $i=30;
 //JPG image quality 0-100
 $quality = 85;
 
-function create_image($user){
+function create_image($text_blocks){
 
     global $fontname;
     global $quality;
-    $file = "covers/".md5($user[0]['name'].$user[1]['name'].$user[2]['name']).".jpg";
+    global $i; 
+
+    $file = "covers/".md5($text_blocks[0]['name'].$text_blocks[1]['name'].$text_blocks[2]['name']).".jpg";
 
     // if the file already exists dont create it again just serve up the original
     if (!file_exists($file)) {
@@ -27,20 +27,20 @@ function create_image($user){
         $color['green'] = imagecolorallocate($im, 55, 189, 102);
 
         // this defines the starting height for the text block
-        $y = imagesy($im) - $height - 365;
+        $y = imagesy($im) - 365;
 
         // loop through the array and write the text
-        foreach ($user as $value){
+        foreach ($text_blocks as $text_block){
             // center the text in our image - returns the x value
-            $x = center_text($value['name'], $value['font-size']);
+            $x = center_text($text_block['name'], $text_block['font-size']);
             imagettftext(
                 $im, 
-                $value['font-size'], 
+                $text_block['font-size'], 
                 0, 
                 $x, 
                 $y+$i, 
-                $color[$value['color']], 
-                $fontname,$value['name']
+                $color[$text_block['color']], 
+                $fontname,$text_block['name']
             );
             // add 32px to the line height for the next text block
             $i = $i+32;
@@ -61,7 +61,7 @@ function center_text($string, $font_size){
     return ceil(($image_width - $dimensions[4]) / 2);
 }
 
-$user = array(
+$text_blocks = array(
 
     array(
         'name'=> 'Ashley Ford',
@@ -74,11 +74,13 @@ $user = array(
         'color'=>'grey'),
 
     array(
-        'name'=> 'ashley[at]papermashup.com',
+        'name'=> 'ashley@papermashup.com',
         'font-size'=>'13',
         'color'=>'green'
         )
     );
 
 // run the script to create the image
-$filename = create_image($user);
+$filename = create_image($text_blocks);
+
+chmod($filename, 0666); // needs 0, must be octal
