@@ -8,7 +8,7 @@ class TitleImage {
 		"facebook" => array(
 			"titleImageWidth" => 1200,
 			"titleImageHeight" => 628,
-			"textTopY" => 200,
+			"textShiftY" => 10,
 			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
 			"textMaxColumns" => 30,
 			"fontSize" => 40,
@@ -49,23 +49,31 @@ class TitleImage {
 	        
 	        $lineTexts = explode('|', wordwrap($titleStr, $layout->textMaxColumns, '|'));
 
-	        // $textTopY = COMING SOON
-
+	        $textTopY = $layout->textShiftY + self::get_top_y_for_centering_linetexts_in_layout($lineTexts, $layout);
 
 	        $textColor = imagecolorallocate( $newImg, $layout->textColor->r, $layout->textColor->g, $layout->textColor->b );
 
 	        for ($i=0; $i < count($lineTexts); $i++) { 
 
-		        // add text to the image
+		        // add (each) line of text to the image:
+
 				imagettftext(
-					 $newImg, 				 
-					 $layout->fontSize, 	 
-					 0, // angle	 
-					 self::get_x_to_center_str_in_layout($lineTexts[$i], $layout), 			 
-					 $layout->textTopY + ($i-1)*$layout->lineHeight, 	 
-					 $textColor, 			 
-					 self::FONT_FILENAME, 	 
-		 			 $lineTexts[$i]					
+
+					 /* image */    $newImg, 				 
+
+					 /* size */    $layout->fontSize, 	 
+
+					 /* angle */    0, // angle	 
+
+					 /* x */    self::get_left_x_for_centering_str_in_layout($lineTexts[$i], $layout), 			 
+
+					 /* y */    $textTopY + ($i-0)*$layout->lineHeight, 	 
+
+					 /* color */    $textColor, 			 
+
+					 /* fontfile */    self::FONT_FILENAME, 	 
+
+		 			 /* text */    $lineTexts[$i]
 				);
 
 	        }
@@ -81,9 +89,13 @@ class TitleImage {
 
 
 
-	private function get_x_to_center_str_in_layout($str, $layout){
+	private function get_left_x_for_centering_str_in_layout($str, $layout){
 	    $dimensions = imagettfbbox($layout->fontSize, 0, self::FONT_FILENAME, $str);
-	    return ceil(($layout->titleImageWidth - $dimensions[4]) / 2); // mathematically the same as layoutWidth/2 - imgWidth/2, but more performant
+	    return ceil(($layout->titleImageWidth - $dimensions[4]) / 2); // mathematically the same as layoutWidth/2 - textWidth/2, but more performant
+	}
+	private function get_top_y_for_centering_linetexts_in_layout($lineTexts, $layout){
+		$textBlockHeight = count($lineTexts) * $layout->lineHeight;
+	    return ceil(($layout->titleImageHeight - $textBlockHeight) / 2); // mathematically the same as layoutHeight/2 - textsHeight/2, but more performant		
 	}
 
 
