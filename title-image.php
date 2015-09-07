@@ -15,23 +15,23 @@ class TitleImage {
 
 	public function createImage($titleStr, $layoutKey){
 
-		$layout = self::$layouts[$layoutKey];
+		$layout = json_decode(json_encode( self::$layouts[$layoutKey] ));
 		
-		$filename = "title-images/".$layout['imgFolderSlug'].'/'.self::toSlug($titleStr).".jpg";
+		$filename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".jpg";
 		var_dump($filename);
 
 		if (!file_exists($filename)) {
 
-			$bkgImg = imagecreatefrompng($layout['bkgImgPath']);
+			$bkgImg = imagecreatefrompng($layout->bkgImgPath);
 			var_dump($bkgImg);
 
 			// verify background image dimensions
-			if ( ! imagesy($bkgImg) == $layout['titleImageHeight'] ) {
-				error_log('$layout[\'titleImageHeight\']: '.$layout['titleImageHeight'].' imagesy($bkgImg): '.imagesy($bkgImg));
+			if ( ! imagesy($bkgImg) == $layout->titleImageHeight ) {
+				error_log('$layout->titleImageHeight: '.$layout->titleImageHeight.' imagesy($bkgImg): '.imagesy($bkgImg));
 				throw new Exception("ERROR: Background image provided has incorrect height", 1);
 			}
-			if ( ! imagesx($bkgImg) == $layout['titleImageWidth'] ) {
-				error_log('$layout[\'titleImageWidth\']: '.$layout['titleImageWidth'].' imagesx($bkgImg): '.imagesx($bkgImg));
+			if ( ! imagesx($bkgImg) == $layout->titleImageWidth ) {
+				error_log('$layout->titleImageWidth: '.$layout->titleImageWidth.' imagesx($bkgImg): '.imagesx($bkgImg));
 				throw new Exception("ERROR: Background image provided has incorrect width", 1);
 			}
 
