@@ -2,8 +2,48 @@
 }
 #epic-title {
 	font-size: 3em;
-	padding-bottom: 1.5em;
+	padding: 1.5em 3.5em;
+	max-width:700px;
+	/*min-height: 375px;*/
+	width: 100%;
+	margin:auto;
+
+/*	background-image:url(../media/banner.png);
+	background-size: contain;
+	background-size: 100% 100%;
+	background-position: center center;
+	background-repeat:no-repeat;*/
 }
+@media only screen and (max-width:500px){
+	#epic-title {
+		padding: 1.5em 1.5em;
+	}
+	#page-title span {
+		font-size:.7em;
+	}
+}
+#output {
+	min-height: 375px;
+}
+
+#epic-title {
+    position: relative;
+    overflow: hidden;
+}
+#epic-title b {
+    /*padding: 200px;*/
+    position: relative;
+    z-index: 2;
+} 
+#epic-title img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
 #seed-name, #randomize-button {
 	margin-bottom:2em;
 }
@@ -16,14 +56,14 @@ html {
 	display:table;
 }
 body {
-	font-family: 'MedievalSharp', cursive;
+	font-family: 'MedievalSharp', cursive, serif;
 	text-align: center;
 
 	background-color: #D2B876;
 	background-color: HSL(47, 52%, 84%);
 	color: rgba(61, 44, 12, .8);
 	text-shadow: 1px 1px 1px rgba(61, 44, 12, .3);
-	background-image: url("../media/vellum.jpg");
+	background-image: url(../media/vellum.jpg);
 	background-size: 101% 100%;
 	
 	display:table-cell;
@@ -37,11 +77,11 @@ body {
     -webkit-transition: .5s;
     transition: .5s;
 }*/
-#randomize-button:hover {
+/*#randomize-button:hover {
 	cursor: pointer;
 	box-shadow: 2px 2px 2px rgba(61, 44, 12, .3), -2px -2px 2px rgba(61, 44, 12, .3) inset;
 	text-shadow: 2px 2px 2px rgba(61, 44, 12, .3);
-}
+}*/
 
 ::selection {
   background: RGBA(203, 80, 59, .5); /* WebKit/Blink Browsers */
