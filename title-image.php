@@ -2,7 +2,7 @@
 
 class TitleImage {
 
-	const FONT_FILENAME = "fonts/Capriola-Regular.ttf";
+	const FONT_FILENAME = "fonts/MedievalSharp-Bold.ttf";
 
 	private static $layouts = array(
 		"facebook" => array(
