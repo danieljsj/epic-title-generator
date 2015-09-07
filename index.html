@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width">
 
 
-	<!-- Libraries -->
+	<!-- Vendor -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js">
 </script>
 	<script src="//code.jquery.com/jquery-2.1.4.js"></script>
-	<!-- Scripts -->
+	
+	<link href='http://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet' type='text/css'>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+	<!-- Source -->
 	<script type="text/javascript" src="js/word-bank.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<link href='http://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="media/favicon-static.ico" type="image/x-icon">
 	<link rel="icon" href="media/favicon-animated.ico" type="image/x-icon">
 </head>
@@ -34,7 +46,9 @@
 	<div id="controls">
 		<div id="seed-name">
 			<label>Your Name: <input id="seed" type="text" value="" onchange="console.log(this);"></label>
-			<button onclick="seededRandom()">Seeded Random</button>
+			<button onclick="seededRandom()" type="button" class="btn btn-default btn-lg">
+				Seeded Random
+			</button>
 		</div>
 		<span id="randomize-button" onclick="randomize()">Pure Random</span>
 	</div>
