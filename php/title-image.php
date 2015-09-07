@@ -1,50 +1,94 @@
-<?php 
-//Send a generated image to the browser
-if ( isset($_GET['epic_title']) ){
-    create_image(); 
-    exit();
-} else {
-    echo "ERROR: 'epic_title' not provided!";
+<?php
+
+
+
+This is not working because:
+
+Call to undefined function imagettfbbox...
+
+ttf not supported on mac. 
+
+thanks, apple! Dork.
+
+FreeType, and PNG, not supported.
+
+So, gotta use Linux.
+
+
+
+
+
+
+
+
+// link to the font file no the server
+$fontname = 'fonts/Capriola-Regular.ttf';
+// controls the spacing between text
+$i=30;
+//JPG image quality 0-100
+$quality = 85;
+
+function create_image($user){
+
+    global $fontname;
+    global $quality;
+    $file = "covers/".md5($user[0]['name'].$user[1]['name'].$user[2]['name']).".jpg";
+
+// if the file already exists dont create it again just serve up the original
+    if (!file_exists($file)) {
+
+// define the base image that we lay our text on
+        $im = imagecreatefromjpeg("pass.jpg");
+
+// setup the text colours
+        $color['grey'] = imagecolorallocate($im, 54, 56, 60);
+        $color['green'] = imagecolorallocate($im, 55, 189, 102);
+
+// this defines the starting height for the text block
+        $y = imagesy($im) - $height - 365;
+
+// loop through the array and write the text
+        foreach ($user as $value){
+// center the text in our image - returns the x value
+            $x = center_text($value['name'], $value['font-size']);
+            imagettftext($im, $value['font-size'], 0, $x, $y+$i, $color[$value['color']], $fontname,$value['name']);
+// add 32px to the line height for the next text block
+            $i = $i+32;
+
+        }
+// create the image
+        imagejpeg($im, $file, $quality);
+
+    }
+
+    return $file;
 }
-function create_image() 
-{ 
-    //Let's generate a totally random string using md5 
-    $md5 = md5(rand(0,999)); 
-    //We don't need a 32 character long string so we trim it down to 5 
-    $pass = substr($md5, 10, 5); 
 
-    $epic_title = $_GET["epic_title"];
+function center_text($string, $font_size){
+    global $fontname;
+    $image_width = 800;
+    $dimensions = imagettfbbox($font_size, 0, $fontname, $string);
+    return ceil(($image_width - $dimensions[4]) / 2);
+}
 
-    //Set the image width and height 
-    $width = 1200; 
-    $height = 628;  
+$user = array(
 
-    //Create the image resource 
-    $image = ImageCreate($width, $height);  
+    array(
+        'name'=> 'Ashley Ford',
+        'font-size'=>'27',
+        'color'=>'grey'),
 
-    //We are making three colors, white, black and gray 
-    $white = ImageColorAllocate($image, 255, 255, 255); 
-    $black = ImageColorAllocate($image, 0, 0, 0); 
-    $grey = ImageColorAllocate($image, 204, 204, 204); 
+    array(
+        'name'=> 'Technical Director',
+        'font-size'=>'16',
+        'color'=>'grey'),
 
-    //Make the background black 
-    ImageFill($image, 0, 0, $black); 
+    array(
+        'name'=> 'ashley[at]papermashup.com',
+        'font-size'=>'13',
+        'color'=>'green'
+        )
+    );
 
-    //Add string in white to the image
-    ImageString($image, 3, 30, 3, $epic_title, $white); 
-
-    //Throw in some lines to make it a little bit harder for any bots to break 
-    ImageRectangle($image,0,0,$width-1,$height-1,$grey); 
-    imageline($image, 0, $height/2, $width, $height/2, $grey); 
-    imageline($image, $width/2, 0, $width/2, $height, $grey); 
- 
-    //Tell the browser what kind of file is come in 
-    header("Content-Type: image/jpeg"); 
-
-    //Output the newly created image in jpeg format 
-    ImageJpeg($image); 
-    
-    //Free up resources
-    ImageDestroy($image); 
-} 
-?>
+// run the script to create the image
+$filename = create_image($user);
