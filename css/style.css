@@ -3,6 +3,14 @@
 #epic-title {
 	font-size: 3em;
 	padding-bottom: 1.5em;
+	width:600px;
+	max-width: 100%;
+	margin:auto;
+
+	background-image:url(../media/google.png);
+	background-size: contain;
+	background-position: center center;
+	background-repeat:no-repeat;
 }
 #seed-name, #randomize-button {
 	margin-bottom:2em;
@@ -23,7 +31,7 @@ body {
 	background-color: HSL(47, 52%, 84%);
 	color: rgba(61, 44, 12, .8);
 	text-shadow: 1px 1px 1px rgba(61, 44, 12, .3);
-	background-image: url("../media/vellum.jpg");
+	background-image: url(../media/vellum.jpg);
 	background-size: 101% 100%;
 	
 	display:table-cell;
