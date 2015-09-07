@@ -2,11 +2,10 @@
 }
 #epic-title {
 	font-size: 3em;
-	padding: 1.5em;
 	padding: 1.5em 3.5em;
-	width:700px;
+	max-width:700px;
 	/*min-height: 375px;*/
-	max-width: 100%;
+	width: 100%;
 	margin:auto;
 
 /*	background-image:url(../media/banner.png);
@@ -14,6 +13,17 @@
 	background-size: 100% 100%;
 	background-position: center center;
 	background-repeat:no-repeat;*/
+}
+@media only screen and (max-width:500px){
+	#epic-title {
+		padding: 1.5em 1.5em;
+	}
+	#page-title span {
+		font-size:.7em;
+	}
+}
+#output {
+	min-height: 375px;
 }
 
 #epic-title {
