@@ -16,7 +16,7 @@ class TitleImage {
 		
 		if (!file_exists($filename)) {
 
-			$bkgImg = imagecreatefrompng('app-images/title-image-background.png');
+			$bkgImg = imagecreatefrompng('media/title-image-bkg-fb.png');
 			var_dump($bkgImg);
 
 			// verify background image dimensions
@@ -50,7 +50,8 @@ class TitleImage {
 		$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
 		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
 		$clean = strtolower(trim($clean, '-'));
-		$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+		$clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
+		return $clean;
 	}
 }
 
