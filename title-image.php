@@ -2,13 +2,18 @@
 
 class TitleImage {
 
+	const FONT_FILENAME = "fonts/Capriola-Regular.ttf";
+
 	private static $layouts = array(
 		"facebook" => array(
 			"titleImageWidth" => 1200,
 			"titleImageHeight" => 628,
 			"textTopY" => 200,
+			"fontSize" => '20', // todo::try this not in quotes; would feel better...
 			"bkgImgPath" => "media/title-image-bkg-fb.png",
 			"imgFolderSlug" => "-",
+			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
+			),
 		),
 	);
 
@@ -35,18 +40,37 @@ class TitleImage {
 				throw new Exception("ERROR: Background image provided has incorrect width", 1);
 			}
 
+			// prep the dynamic parameters
+			$textLeftX = get_x_to_center_str_in_layout($titleStr, $layout);
+	        
+	        $textColor = imagecolorallocate(
+	        	$bkgImg,
+	        	$layout->textColor->r,
+	        	$layout->textColor->g,
+	        	$layout->textColor->b
+	        );
 
-			// coming soon:
-			// $colors['grey'] = imagecolorallocate($im, 54, 56, 60);
-			// $colors['green'] = imagecolorallocate($im, 55, 189, 102);
-
+	        // build the image
+			imagettftext(
+				 $bkgImg, 				// image 
+				 $layout->fontSize, 	// font-size 
+				 0, 					// angle 
+				 $textLeftX, 			// x 
+				 $layout->textTopY, 	// y 
+				 $textColor, 			// text color 
+				 self::FONT_FILENAME, 	// font filename
+	 			 $titleStr 				// text		
+			);
 		}
 	}
 
 
 
 
-
+	private function get_x_to_center_str_in_layout($str, $layout){
+	    $dimensions = imagettfbbox($layout->fontSize, 0, self::FONT_FILENAME, $str);
+	    return ceil(($layout->titleImageWidth - $dimensions[4]) / 2); // mathematically the same as layoutWidth/2 - imgWidth/2, but more performant
+	}
 
 
 
