@@ -51,8 +51,6 @@ class TitleImage {
 
 	        // $textTopY = COMING SOON
 
-			$textLeftX = self::get_x_to_center_str_in_layout($titleStr, $layout);
-
 
 	        $textColor = imagecolorallocate( $newImg, $layout->textColor->r, $layout->textColor->g, $layout->textColor->b );
 
@@ -63,7 +61,7 @@ class TitleImage {
 					 $newImg, 				 
 					 $layout->fontSize, 	 
 					 0, // angle	 
-					 $textLeftX, 			 
+					 self::get_x_to_center_str_in_layout($lineTexts[$i], $layout), 			 
 					 $layout->textTopY + ($i-1)*$layout->lineHeight, 	 
 					 $textColor, 			 
 					 self::FONT_FILENAME, 	 
