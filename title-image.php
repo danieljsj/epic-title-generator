@@ -9,7 +9,7 @@ class TitleImage {
 			"titleImageWidth" => 1200,
 			"titleImageHeight" => 628,
 			"textTopY" => 200,
-			"fontSize" => '20', // todo::try this not in quotes; would feel better...
+			"fontSize" => 40,
 			"bkgImgPath" => "media/title-image-bkg-fb.png",
 			"imgFolderSlug" => "-",
 			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
