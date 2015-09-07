@@ -5,7 +5,7 @@ console.log("\i\n wordBank: "); console.log(wordBank);
 
 new Audio('media/randomize.wav'); // just to get the file to pre-download
 
-
+var fullTitleText = ''; // because we'll want to access this outside the randomize func probs.
 
 function randomize(seed) {
 
@@ -143,22 +143,12 @@ function randomize(seed) {
 		{ id: 'domain-concept-preposition'	, text: texts.domainConceptPreposition },
 		{ id: 'concept-noun'				, text: texts.conceptNoun }
 	];
-	var fullTitleText = '';
+	fullTitleText = '';
 	for (var i = 0; i < elements.length; i++) {
 		// sets the text of each browser element
 		document.getElementById(elements[i].id).innerHTML = elements[i].text;
-		fullTitleText += elements[i].text + ' ';
+		if (elements[i].text) fullTitleText += elements[i].text + ' ';
 	};
-
-
-	var encodedFullTitleText = fullTitleText.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-	   return '&#'+i.charCodeAt(0)+';';
-	});
-
-	$.ajax('title-image.php?epic_title='+encodedFullTitleText).done(function(imgUrl){
-		var html = '<img src="'+imgUrl+'"/>';
-		$('#sharing').html(html);
-	});
 
 
 
@@ -196,4 +186,16 @@ function seededRandom(){
 	} else {
 		alert("Please enter your name to enable seeded random.");
 	}
+}
+
+
+
+function getFbImageUrl(){
+	var encodedFullTitleText = fullTitleText.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+	   return '&#'+i.charCodeAt(0)+';';
+	});
+	$.ajax('title-image.php?epic_title='+encodedFullTitleText).done(function(imgUrl){
+		var html = '<img src="'+imgUrl+'"/>';
+		$('#sharing').html(html);
+	});
 }
