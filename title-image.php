@@ -1,32 +1,38 @@
-<?php 
+<pre><?php 
 
 class TitleImage {
 
-	// all dimensions in pixels
-	const TITLE_IMAGE_WIDTH = 1200;
-	const TITLE_IMAGE_HEIGHT = 628;
+	private static $layouts = array(
+		"facebook" => array(
+			"titleImageWidth" => 1200,
+			"titleImageHeight" => 628,
+			"textTopY" => 200,
+			"bkgImgPath" => "media/title-image-bkg-fb.png",
+			"imgFolderSlug" => "-",
+		),
+	);
 
-	const TEXT_TOP_Y = 200;
 
+	public function createImage($titleStr, $layoutKey){
 
-
-	public function createImage($str){
+		$layout = self::$layouts[$layoutKey];
 		
-		$filename = "title-images/".self::toSlug($str).".jpg";
-		
+		$filename = "title-images/".$layout['imgFolderSlug'].'/'.self::toSlug($titleStr).".jpg";
+		var_dump($filename);
+
 		if (!file_exists($filename)) {
 
-			$bkgImg = imagecreatefrompng('media/title-image-bkg-fb.png');
+			$bkgImg = imagecreatefrompng($layout['bkgImgPath']);
 			var_dump($bkgImg);
 
 			// verify background image dimensions
-			if ( ! self::TITLE_IMAGE_HEIGHT == imagesy($bkgImg) ) {
-				error_log('self::TITLE_IMAGE_HEIGHT: '.self::TITLE_IMAGE_HEIGHT.' imagesy($bkgImg): '.imagesy($bkgImg));
+			if ( ! imagesy($bkgImg) == $layout['titleImageHeight'] ) {
+				error_log('$layout[\'titleImageHeight\']: '.$layout['titleImageHeight'].' imagesy($bkgImg): '.imagesy($bkgImg));
 				throw new Exception("ERROR: Background image provided has incorrect height", 1);
 			}
-			if ( ! self::TITLE_IMAGE_WIDTH == imagesx($bkgImg) ) {
-				error_log('self::TITLE_IMAGE_WIDTH: '.self::TITLE_IMAGE_WIDTH.' imagesx($bkgImg): '.imagesx($bkgImg));
-				throw new Exception("ERROR: Background image provided has incorrect height", 1);
+			if ( ! imagesx($bkgImg) == $layout['titleImageWidth'] ) {
+				error_log('$layout[\'titleImageWidth\']: '.$layout['titleImageWidth'].' imagesx($bkgImg): '.imagesx($bkgImg));
+				throw new Exception("ERROR: Background image provided has incorrect width", 1);
 			}
 
 
@@ -58,10 +64,11 @@ class TitleImage {
 
 
 
-$str = $_GET['epic_title'];
+$titleStr = $_GET['epic_title'];
+$layoutKey = ( isset($_GET['layout']) ? $_GET['layout'] : 'facebook' );
 
-if ($str) {
-	TitleImage::createImage($str);
+if ($titleStr) {
+	TitleImage::createImage($titleStr, $layoutKey);
 } else {
 	throw new Exception('Error Processing Request; no "epic_title" value was present in the requested url', 1);
 }
