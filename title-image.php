@@ -13,55 +13,63 @@ class TitleImage {
 			"bkgImgPath" => "media/title-image-bkg-fb.png",
 			"imgFolderSlug" => "-",
 			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
-			),
+			"imgQuality" => 9, // imagejpeg quality can be up to 100, whereas imagepng maximum quality is 9ls 
 		),
 	);
 
 
-	public function createImage($titleStr, $layoutKey){
+	public function getImgSrc($titleStr, $layoutKey){
 
 		$layout = json_decode(json_encode( self::$layouts[$layoutKey] ));
 		
-		$filename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".jpg";
-		var_dump($filename);
+		$titleImageFilename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".png";
 
-		if (!file_exists($filename)) {
+		if (!file_exists($titleImageFilename)) {
+			$dirPath = "title-images/".$layout->imgFolderSlug.'/';
+			if( !is_dir($dirPath) ){
+				mkdir($dirPath); chmod($dirPath, 0777);
+			}
 
-			$bkgImg = imagecreatefrompng($layout->bkgImgPath);
-			var_dump($bkgImg);
+			$newImg = imagecreatefrompng($layout->bkgImgPath);
+			var_dump($newImg);
 
 			// verify background image dimensions
-			if ( ! imagesy($bkgImg) == $layout->titleImageHeight ) {
-				error_log('$layout->titleImageHeight: '.$layout->titleImageHeight.' imagesy($bkgImg): '.imagesy($bkgImg));
+			if ( ! imagesy($newImg) == $layout->titleImageHeight ) {
+				error_log('$layout->titleImageHeight: '.$layout->titleImageHeight.' imagesy($newImg): '.imagesy($newImg));
 				throw new Exception("ERROR: Background image provided has incorrect height", 1);
 			}
-			if ( ! imagesx($bkgImg) == $layout->titleImageWidth ) {
-				error_log('$layout->titleImageWidth: '.$layout->titleImageWidth.' imagesx($bkgImg): '.imagesx($bkgImg));
+			if ( ! imagesx($newImg) == $layout->titleImageWidth ) {
+				error_log('$layout->titleImageWidth: '.$layout->titleImageWidth.' imagesx($newImg): '.imagesx($newImg));
 				throw new Exception("ERROR: Background image provided has incorrect width", 1);
 			}
 
 			// prep the dynamic parameters
-			$textLeftX = get_x_to_center_str_in_layout($titleStr, $layout);
+			$textLeftX = self::get_x_to_center_str_in_layout($titleStr, $layout);
 	        
 	        $textColor = imagecolorallocate(
-	        	$bkgImg,
+	        	$newImg,
 	        	$layout->textColor->r,
 	        	$layout->textColor->g,
 	        	$layout->textColor->b
 	        );
 
-	        // build the image
+	        // add text to the image
 			imagettftext(
-				 $bkgImg, 				// image 
-				 $layout->fontSize, 	// font-size 
-				 0, 					// angle 
-				 $textLeftX, 			// x 
-				 $layout->textTopY, 	// y 
-				 $textColor, 			// text color 
-				 self::FONT_FILENAME, 	// font filename
-	 			 $titleStr 				// text		
+				 $newImg, 				 
+				 $layout->fontSize, 	 
+				 0, // angle	 
+				 $textLeftX, 			 
+				 $layout->textTopY, 	 
+				 $textColor, 			 
+				 self::FONT_FILENAME, 	 
+	 			 $titleStr 						
 			);
+
+			imagepng($newImg, $titleImageFilename, $layout->imgQuality);
+			chmod($titleImageFilename, 0666);
 		}
+
+		return $titleImageFilename;
 	}
 
 
@@ -88,11 +96,17 @@ class TitleImage {
 
 
 
+
+
+// RUNTIME:
+
 $titleStr = $_GET['epic_title'];
 $layoutKey = ( isset($_GET['layout']) ? $_GET['layout'] : 'facebook' );
 
 if ($titleStr) {
-	TitleImage::createImage($titleStr, $layoutKey);
+	$src = TitleImage::getImgSrc($titleStr, $layoutKey);
+	var_dump($src);
+	echo "<img src='$src' />";
 } else {
 	throw new Exception('Error Processing Request; no "epic_title" value was present in the requested url', 1);
 }
