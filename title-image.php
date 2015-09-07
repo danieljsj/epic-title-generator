@@ -9,10 +9,12 @@ class TitleImage {
 			"titleImageWidth" => 1200,
 			"titleImageHeight" => 628,
 			"textTopY" => 200,
+			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
+			"textMaxColumns" => 30,
 			"fontSize" => 40,
+			"lineHeight" => 60,
 			"bkgImgPath" => "media/title-image-bkg-fb.png",
 			"imgFolderSlug" => "-",
-			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
 			"imgQuality" => 9, // imagejpeg quality can be up to 100, whereas imagepng maximum quality is 9ls 
 		),
 	);
@@ -44,26 +46,32 @@ class TitleImage {
 			}
 
 			// prep the dynamic parameters
-			$textLeftX = self::get_x_to_center_str_in_layout($titleStr, $layout);
 	        
-	        $textColor = imagecolorallocate(
-	        	$newImg,
-	        	$layout->textColor->r,
-	        	$layout->textColor->g,
-	        	$layout->textColor->b
-	        );
+	        $lineTexts = explode('|', wordwrap($titleStr, $layout->textMaxColumns, '|'));
 
-	        // add text to the image
-			imagettftext(
-				 $newImg, 				 
-				 $layout->fontSize, 	 
-				 0, // angle	 
-				 $textLeftX, 			 
-				 $layout->textTopY, 	 
-				 $textColor, 			 
-				 self::FONT_FILENAME, 	 
-	 			 $titleStr 						
-			);
+	        // $textTopY = COMING SOON
+
+			$textLeftX = self::get_x_to_center_str_in_layout($titleStr, $layout);
+
+
+	        $textColor = imagecolorallocate( $newImg, $layout->textColor->r, $layout->textColor->g, $layout->textColor->b );
+
+	        for ($i=0; $i < count($lineTexts); $i++) { 
+
+		        // add text to the image
+				imagettftext(
+					 $newImg, 				 
+					 $layout->fontSize, 	 
+					 0, // angle	 
+					 $textLeftX, 			 
+					 $layout->textTopY + ($i-1)*$layout->lineHeight, 	 
+					 $textColor, 			 
+					 self::FONT_FILENAME, 	 
+		 			 $lineTexts[$i]					
+				);
+
+	        }
+
 
 			imagepng($newImg, $titleImageFilename, $layout->imgQuality);
 			chmod($titleImageFilename, 0666);
