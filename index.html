@@ -6,8 +6,7 @@
 
 
 	<!-- Vendor -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js">
-</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
 	<script src="//code.jquery.com/jquery-2.1.4.js"></script>
 	
 	<link href='http://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet' type='text/css'>
@@ -45,12 +44,28 @@
 	</div>
 	<div id="controls">
 		<div id="seed-name">
+			<div class="container-fluid">
+	        <div class="navbar-header">
+	          <span class="navbar-brand">Your Name:</span>
+	        </div>
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+	          <form class="navbar-form navbar-left" role="search" _lpchecked="1">
+	            <div class="form-group">
+	              <input type="text" class="form-control" placeholder="First">
+	              <input type="text" class="form-control" placeholder="Last">
+	            </div>
+	            <button type="submit" class="btn btn-default">Submit</button>
+	          </form>
+	        </div>
+	      </div>
 			<label>Your Name: <input id="seed" type="text" value="" onchange="console.log(this);"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-lg">
 				Seeded Random
 			</button>
 		</div>
-		<span id="randomize-button" onclick="randomize()">Pure Random</span>
+		<button  id="randomize-button" onclick="randomize()" type="button" class="btn btn-default btn-lg">
+			Pure Random
+		</button>
 	</div>
 </body>
 </html>

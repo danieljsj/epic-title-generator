@@ -29,14 +29,14 @@ body {
 	display:table-cell;
 	vertical-align: middle;
 }
-#randomize-button {
+/*#randomize-button {
 	background-color: #D2B876;
 	box-shadow: 1px 1px 1px rgba(61, 44, 12, .3), -1px -1px 1px rgba(61, 44, 12, .3) inset;
 	color: rgba(61, 44, 12, .8);
 	padding:6px 12px;
-    -webkit-transition: .5s; /* Safari */
+    -webkit-transition: .5s;
     transition: .5s;
-}
+}*/
 #randomize-button:hover {
 	cursor: pointer;
 	box-shadow: 2px 2px 2px rgba(61, 44, 12, .3), -2px -2px 2px rgba(61, 44, 12, .3) inset;
