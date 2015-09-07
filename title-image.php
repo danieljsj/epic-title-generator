@@ -6,16 +6,32 @@ class TitleImage {
 
 	private static $layouts = array(
 		"facebook" => array(
+
+			// IMAGE:		
 			"titleImageWidth" => 1200,
 			"titleImageHeight" => 628,
-			"textShiftY" => 10,
-			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
-			"textMaxColumns" => 30,
-			"fontSize" => 40,
-			"lineHeight" => 60,
 			"bkgImgPath" => "media/title-image-bkg-fb.png",
 			"imgFolderSlug" => "-",
 			"imgQuality" => 9, // imagejpeg quality can be up to 100, whereas imagepng maximum quality is 9ls 
+
+			// TEXT BASICS:
+			"textColor" => array("r" => 54,	"g" => 56, "b" => 60),
+			"textShadowColor" => array("r" => 54,	"g" => 56, "b" => 60, "a" => 93), // "a" / "alpha" is A value between 0 and 127. 0
+			"textShadowOffsetY" => 4,
+			"textShadowOffsetX" => 4,
+
+
+			// TEXT-SIZE-DEPENDENT:
+
+			// "fontSize" => 40,
+			// "textMaxColumns" => 30,
+			// "lineHeight" => 60,
+			// "textShiftY" => 10,
+			
+			"fontSize" => 60,
+			"textMaxColumns" => 25,
+			"lineHeight" => 85,
+			"textShiftY" => 30,
 		),
 	);
 
@@ -26,7 +42,7 @@ class TitleImage {
 		
 		$titleImageFilename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".png";
 
-		if (!file_exists($titleImageFilename)) {
+		if ( true || !file_exists($titleImageFilename)) {
 			$dirPath = "title-images/".$layout->imgFolderSlug.'/';
 			if( !is_dir($dirPath) ){
 				mkdir($dirPath); chmod($dirPath, 0777);
@@ -52,28 +68,39 @@ class TitleImage {
 	        $textTopY = $layout->textShiftY + self::get_top_y_for_centering_linetexts_in_layout($lineTexts, $layout);
 
 	        $textColor = imagecolorallocate( $newImg, $layout->textColor->r, $layout->textColor->g, $layout->textColor->b );
+	        $textShadowColor = imagecolorallocatealpha( $newImg, $layout->textShadowColor->r, $layout->textShadowColor->g, $layout->textShadowColor->b, $layout->textShadowColor->a );
 
 	        for ($i=0; $i < count($lineTexts); $i++) { 
 
-		        // add (each) line of text to the image:
-
+	        	// SHADOW
 				imagettftext(
 
-					 /* image */    $newImg, 				 
+					 /* image */	$newImg, 				 
+					 /* size */		$layout->fontSize, 	 
+					 /* angle */	0, // angle	 
 
-					 /* size */    $layout->fontSize, 	 
+					 /* x */		$layout->textShadowOffsetX + self::get_left_x_for_centering_str_in_layout($lineTexts[$i], $layout), 			 
+					 /* y */		$layout->textShadowOffsetY +$textTopY + ($i-0)*$layout->lineHeight, 	 
+					 /* color */	$textShadowColor, 			 
 
-					 /* angle */    0, // angle	 
+					 /* fontfile */	self::FONT_FILENAME, 	 
+		 			 /* text */		$lineTexts[$i]
+				);
 
-					 /* x */    self::get_left_x_for_centering_str_in_layout($lineTexts[$i], $layout), 			 
 
-					 /* y */    $textTopY + ($i-0)*$layout->lineHeight, 	 
+				// TEXT
+				imagettftext(
 
+					 /* image */	$newImg, 				 
+					 /* size */		$layout->fontSize, 	 
+					 /* angle */	0, // angle	 
+
+					 /* x */		self::get_left_x_for_centering_str_in_layout($lineTexts[$i], $layout), 			 
+					 /* y */		$textTopY + ($i-0)*$layout->lineHeight, 	 
 					 /* color */    $textColor, 			 
 
-					 /* fontfile */    self::FONT_FILENAME, 	 
-
-		 			 /* text */    $lineTexts[$i]
+					 /* fontfile */	self::FONT_FILENAME, 	 
+		 			 /* text */		$lineTexts[$i]
 				);
 
 	        }
