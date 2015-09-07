@@ -166,7 +166,6 @@ function randomize(seed) {
 
 
 $(document).ready(function (){
-	alert('document ready');
 	$('#seed').keypress(function (e) { // FAILING
 	  if (e.which == 13) {
 	    seededRandom();
