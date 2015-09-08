@@ -1,5 +1,6 @@
 <?php 
 
+
 class TitleImage {
 
 	const FONT_FILENAME = "fonts/MedievalSharp-Bold.ttf";
@@ -144,7 +145,11 @@ class TitleImage {
 
 // RUNTIME:
 
-$titleStr = $_GET['epic_title'];
+if ( ! function_exists('_sp') ){
+	function _sp($str){return str_replace('_', ' ', $str);}
+}
+
+$titleStr = _sp($_GET['epic_title']);
 $layoutKey = ( isset($_GET['layout']) ? $_GET['layout'] : 'facebook' );
 
 if ($titleStr) {
