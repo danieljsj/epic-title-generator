@@ -251,11 +251,15 @@ function getCurrentTitleUrl(){
 	return appUrl + titlePath;
 }
 function getTitlePath(){
-	return '/' + 
-		( getFullTitleText() ? '?epic_title='+getFullTitleText() +
-			( getSeedName()  ?  '&seed_name='+getSeedName()  :  '' )
-		: '' )
-	;
+	if ( getFullTitleText() ){
+		if ( getSeedName() ){
+			return '/?seed_name='+getSeedName()+'&epic_title='+getFullTitleText();
+		} else {
+			return '/?epic_title='+getFullTitleText();
+		}
+	} else {
+		return '/';
+	}
 }
 function updatePageUrl(){
 	history.pushState( {}, '', appUrl+getTitlePath() );
