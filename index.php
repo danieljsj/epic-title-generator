@@ -106,7 +106,7 @@
 	</div>
 	<div id="controls">
 		<div id="seed-name" class="form-inline">
-			<label>Your Name: <input id="seed" type="text" value="<?= $_GET['seed_name'] ?>" class="form-control"></label>
+			<label>Your <em>(or your friend's!)</em> Name: <input id="seed" type="text" value="<?= $_GET['seed_name'] ?>" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
 				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
 			</button>
