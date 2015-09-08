@@ -232,9 +232,14 @@ function getFullTitleText(){
 	return fullTitleText;
 }
 function getSeedName(){
+	if (! currentTitleIsNameBased ) return false;
 	return $('#seed').val();
 }
 
 function openEpicFbSharer(){
-	openFbSharer('http://EpicTitleGenerator.com/?epic_title='+getFullTitleText()+'&seed_name='+getSeedName() );
+	openFbSharer(
+		'http://EpicTitleGenerator.com'
+		+ '/?epic_title='+getFullTitleText() 
+		+ (  getSeedName()  ?  '&seed_name='+getSeedName()  :  ''  ) 
+	);
 }
