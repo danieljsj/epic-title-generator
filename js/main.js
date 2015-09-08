@@ -220,11 +220,14 @@ function openFbSharer(url) {
 }
 
 function getFullTitleText(){
-	fullTitleText = '';
+	var fullTitleText = '';
 	elements.forEach(function(element){
-		var innerHTML = $('#'+element.titleCase).html();
-		if (innerHTML) fullTitleText += innerHTML;
+		// console.log(element.hyphenCase);
+		var innerHTML = $('#'+element.hyphenCase).html();
+		// console.log(innerHTML);
+		if (innerHTML) fullTitleText += innerHTML + ' ';
 	});
+	return fullTitleText;
 }
 function getSeedName(){
 	return $('#seed').val();
