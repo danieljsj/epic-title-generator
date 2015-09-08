@@ -45,7 +45,7 @@
 			$og_url = $rootUrl . '/?epic_title=' . $_GET['epic_title'] . '&seed_name=' . $_GET['seed_name'];
 			$og_image = $rootUrl . '/' . require('title-image-url.php');
 
-			?><script>currentTitleIsNameBased = true;</script><?
+			echo '<script>currentTitleIsNameBased = true;</script>';
 
 		} elseif (isset($_GET['epic_title']) && $_GET['epic_title']) {
 			
