@@ -27,6 +27,27 @@
 
 	<link rel="shortcut icon" href="media/favicon-static.ico" type="image/x-icon">
 	<link rel="icon" href="media/favicon-animated.ico" type="image/x-icon">
+
+
+
+	<!-- Meta -->
+		<!-- Begin Facebook tags -->
+	<meta property="og:title" content="Epic Title Generator" />
+	<meta property="og:url" content="http://EpicTitleGenerator.com/?epic_title=<?= $_GET['epic_title'] ?>" />
+	<meta property="og:description" content="This is where you make your crazy epic titles!" />
+	<meta property="og:image" content="http://EpicTitleGenerator.com/<?= require('title-image-url.php') ?>" />
+	<!--<meta property="fb:page_id" content="Your facebook page ID" />-->
+	<meta property="og:type" content="website" />
+		<!-- End Facebook tags -->
+
+		<!-- Begin Twitter tags -->
+	<!--
+	<meta name="twitter:title" content="Epic Title Generator" />
+	<meta name="twitter:url" content="http://EpicTitleGenerator.com/?epic_title=<?= $_GET['epic_title'] ?>" />
+	<meta name="twitter:card" content="This is where you make your crazy epic titles!" />
+	<meta name="twitter:image" content="URL to image for thumbnail (square 350x350px)" />
+	-->
+		<!-- End Twitter tags -->
 </head>
 <body>
 	<h1 id="page-title" class="text-center" style="text-transform:none; opacity:.5;"><b style="font-size:1.75em;">
@@ -35,14 +56,14 @@
 	<div id="output">
 		<div id="epic-title">
 			<b>
-				<span id="position-article">The</span>
-				<span id="position-adjective">Green</span><!-- maybe -->
-				<span id="position-noun">Squire</span>
-				<span id="position-domain-preposition">of the</span>
-				<span id="domain-adjective">Nine</span><!-- maybe -->
-				<span id="domain-noun">Leagues</span>
-				<span id="domain-concept-preposition">of</span><!-- if concept-noun -->
-				<span id="concept-noun">Malice</span><!-- maybe -->
+				<span id="position-article"><?=$_GET['epic_title']?></span>
+				<span id="position-adjective"></span><!-- maybe -->
+				<span id="position-noun"></span>
+				<span id="position-domain-preposition"></span>
+				<span id="domain-adjective"></span><!-- maybe -->
+				<span id="domain-noun"></span>
+				<span id="domain-concept-preposition"></span><!-- if concept-noun -->
+				<span id="concept-noun"></span><!-- maybe -->
 			</b>
 			<img src="media/banner.png" />
 		</div>
@@ -59,7 +80,7 @@
 		</button>
 	</div>
 	<div id="sharing">
-		<span onclick="getFbImageUrl()" class="glyphicon glyphicon-facebook">FACEBOOK</span>
+		<span onclick="openEpicFbSharer()" class="glyphicon glyphicon-facebook">FACEBOOK</span>
 	</div>
 </body>
 </html>

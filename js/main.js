@@ -131,23 +131,13 @@ function randomize(seed) {
 
 	// TEXT COMPILATION AND USAGE:
 
-
-	// PER-ELEMENT USAGE:
-	var elements = [
-		{ id: 'position-article'			, text: texts.positionArticle },
-		{ id: 'position-adjective'			, text: texts.positionAdjective },
-		{ id: 'position-noun'				, text: texts.positionNoun },
-		{ id: 'position-domain-preposition'	, text: texts.positionDomainPreposition },
-		{ id: 'domain-adjective'			, text: texts.domainAdjective },
-		{ id: 'domain-noun'					, text: texts.domainNoun },
-		{ id: 'domain-concept-preposition'	, text: texts.domainConceptPreposition },
-		{ id: 'concept-noun'				, text: texts.conceptNoun }
-	];
-	fullTitleText = '';
+	var fullTitleText;
 	for (var i = 0; i < elements.length; i++) {
 		// sets the text of each browser element
-		document.getElementById(elements[i].id).innerHTML = elements[i].text;
-		if (elements[i].text) fullTitleText += elements[i].text + ' ';
+		document.getElementById(elements[i].hyphenCase).innerHTML = texts[elements[i].camelCase];
+		if (texts[elements[i].camelCase]){
+			fullTitleText += texts[elements[i].camelCase] + ' ';
+		}
 	};
 
 
@@ -163,6 +153,19 @@ function randomize(seed) {
 	
 	// dsj todo: first image result from google (based on fullTitleText): http://googlecode.blogspot.in/2012/02/image-results-now-available-from-custom.html
 }
+
+
+var elements = [
+	{ hyphenCase: 'position-article'			, camelCase: 'positionArticle' },
+	{ hyphenCase: 'position-adjective'			, camelCase: 'positionAdjective' },
+	{ hyphenCase: 'position-noun'				, camelCase: 'positionNoun' },
+	{ hyphenCase: 'position-domain-preposition'	, camelCase: 'positionDomainPreposition' },
+	{ hyphenCase: 'domain-adjective'			, camelCase: 'domainAdjective' },
+	{ hyphenCase: 'domain-noun'					, camelCase: 'domainNoun' },
+	{ hyphenCase: 'domain-concept-preposition'	, camelCase: 'domainConceptPreposition' },
+	{ hyphenCase: 'concept-noun'				, camelCase: 'conceptNoun' }
+];
+
 
 
 
@@ -194,27 +197,39 @@ function urlEncode(str){
 	});
 }
 
-function getFbImageUrl(){
-	var encodedFullTitleText = urlEncode(fullTitleText);
-	$.ajax('title-image.php?epic_title='+encodedFullTitleText).done(function(image){
-		var url = 'http://EpicTitleGenerator.com',
-			title = 'Epic Title Generator',
-			descr = 'Go Ahead, make an epic title!';
-
-		openFbSharer(url, title, descr, image);
+function getFbImageUrlThenCallback(callback){
+	var encodedFullTitleText = urlEncode( getFullTitleText() );
+	$.ajax('title-image-url.php?epic_title='+encodedFullTitleText).done(function(imageUrl){
+		callback(imageurl);
 	});
 }
 
-function openFbSharer(url, title, descr, image, winWidth, winHeight) {
-	winWidth = (typeof winWidth !== 'undefined' ? winWidth : 520);
-	winHeight = (typeof winHeight !== 'undefined' ? winHeight : 350);
+function openFbSharer(url) {
+	// NOTE: Only the url actually matters, because FB just grabs info based on OG tags of the loaded page; FB understandably doesn't let you specify it to whatever you want via url parameters.
+	winWidth = 520;
+	winHeight = 350;
     var winTop = (screen.height / 2) - (winHeight / 2);
     var winLeft = (screen.width / 2) - (winWidth / 2);
-    var sharerUrl = 'http://www.facebook.com/sharer.php?s=100&p[title]=' + urlEncode(title) + '&p[summary]=' + urlEncode(descr) + '&p[url]=' + url + '&p[images][0]=' + image;
+    var sharerUrl = 'http://www.facebook.com/sharer.php?s=100&p[url]=' + url;
     alert(sharerUrl);
     window.open(
     	sharerUrl, 
     	'sharer', 
     	'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight
     );
+}
+
+function getFullTitleText(){
+	fullTitleText = '';
+	elements.forEach(function(element){
+		var innerHTML = $('#'+element.titleCase).html();
+		if (innerHTML) fullTitleText += innerHTML;
+	});
+}
+function getSeedName(){
+	return $('#seed').val();
+}
+
+function openEpicFbSharer(){
+	openFbSharer('http://EpicTitleGenerator.com/?epic_title='+getFullTitleText()+'&seed_name='+getSeedName() );
 }
