@@ -42,11 +42,11 @@
 
 		$appUrl = 'http://EpicTitleGenerator.com';
 
-		$imgMakerUrl = $appUrl.'/title-image.php'
+		$imgMakerUrl = $appUrl.'/title-image.php';
 
 		if ( isset($_GET['input_name']) && $_GET['input_name'] ) {
 
-			$queryString = '?input_name=' . $_GET['input_name'] . '&=epic_title' . $_GET['epic_title'];
+			$queryString = '?input_name=' . $_GET['input_name'] . '&epic_title=' . $_GET['epic_title'];
 
 			$og_title = _sp($_GET['input_name']).'\'s epic title | &copy; Epic Title Generator';
 			$og_description = "What's YOUR epic title?";
@@ -63,12 +63,15 @@
 		
 		} else {
 
-			$queryString = ''
+			$queryString = '';
 
 			$og_title = 'Epic Title Generator';
 			$og_description = "Where epic titles are born!";
 
 		}
+
+		$og_url = $appUrl . $queryString;
+		$og_fb_image = $imgMakerUrl . $queryString;
 
 	?>
 
@@ -76,9 +79,9 @@
 	<!-- Meta -->
 		<!-- Begin Facebook tags -->
 	<meta property="og:title" content="<?= $og_title ?>" />
-	<meta property="og:url" content="<?= $appUrl . $queryString ?>" />
+	<meta property="og:url" content="<?= $og_url ?>" />
 	<meta property="og:description" content="<?= $og_description ?>" />
-	<meta property="og:image" content="<?= $imgMakerUrl . $queryString ?>" />
+	<meta property="og:image" content="<?= $og_fb_image ?>" />
 	<!--<meta property="fb:page_id" content="Your facebook page ID" />-->
 	<meta property="og:type" content="website" />
 		<!-- End Facebook tags -->
@@ -123,7 +126,7 @@
 		</button>
 	</div>
 	<div id="sharing">
-		Image url: <input id="image-url" class="form-control" readonly="true" value="<?= $epic_title_og_fb_image ?>">
+		Image url: <input id="image-url" class="form-control" readonly="true" value="<?= $og_fb_image ?>">
 		<button onclick="openEpicFbSharer()" type="button" class="btn btn-default btn-md"><b>
 			Share <!-- your -->this Epic Title on Facebook!
 		</b></button>

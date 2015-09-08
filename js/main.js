@@ -8,6 +8,8 @@ function stripTrailingSlashes(str) {
 }
 
 var appUrl = stripTrailingSlashes( location.protocol + '//' + location.host + location.pathname );
+var imageMakerUrl = appUrl + 'title-image.php';
+
 
 console.log("\i\n wordBank: "); console.log(wordBank);
 
@@ -151,6 +153,7 @@ function randomize(seed) {
 	};
 
 	updatePageUrl();
+	updateImageUrl();
 
 	// WHOLE TEXT-GLOB USAGE:
 	// var fullTitleText = '';
@@ -207,13 +210,6 @@ function urlEncode(str){
 	});
 }
 
-function getFbImageUrlThenCallback(callback){
-	var encodedFullTitleText = urlEncode( getFullTitleText() );
-	$.ajax('title-image-url.php?epic_title='+encodedFullTitleText).done(function(imageUrl){
-		callback(imageurl);
-	});
-}
-
 function openFbSharer(url) {
 	// NOTE: Only the url actually matters, because FB just grabs info based on OG tags of the loaded page; FB understandably doesn't let you specify it to whatever you want via url parameters.
 	winWidth = 520;
@@ -253,21 +249,23 @@ function openEpicFbSharer(){
 	openFbSharer( getCurrentTitleUrl() );
 }
 function getCurrentTitleUrl(){
-	titlePath = getTitlePath();
-	return appUrl + titlePath;
+	return appUrl + '/' + getQueryString();
 }
-function getTitlePath(){
+function getQueryString(){
 	if ( getFullTitleText() ){
 		if ( getSeedName() ){
-			return '/?input_name='+getSeedName()+'&epic_title='+getFullTitleText();
+			return '?input_name='+getSeedName()+'&epic_title='+getFullTitleText();
 		} else {
-			return '/?epic_title='+getFullTitleText();
+			return '?epic_title='+getFullTitleText();
 		}
 	} else {
-		return '/';
+		return '';
 	}
 }
 function updatePageUrl(){
-	history.pushState( {}, '', appUrl+getTitlePath() );
+	history.pushState( {}, '', appUrl+getQueryString() );
+}
+function updateImageUrl(){
+	$('#image-url').val(imageMakerUrl+getQueryString() );
 }
 
