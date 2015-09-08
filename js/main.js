@@ -188,14 +188,33 @@ function seededRandom(){
 	}
 }
 
-
-
-function getFbImageUrl(){
-	var encodedFullTitleText = fullTitleText.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+function urlEncode(str){
+	return str.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
 	   return '&#'+i.charCodeAt(0)+';';
 	});
-	$.ajax('title-image.php?epic_title='+encodedFullTitleText).done(function(imgUrl){
-		var html = '<img src="'+imgUrl+'"/>';
-		$('#sharing').html(html);
+}
+
+function getFbImageUrl(){
+	var encodedFullTitleText = urlEncode(fullTitleText);
+	$.ajax('title-image.php?epic_title='+encodedFullTitleText).done(function(image){
+		var url = 'http://EpicTitleGenerator.com',
+			title = 'Epic Title Generator',
+			descr = 'Go Ahead, make an epic title!';
+
+		openFbSharer(url, title, descr, image);
 	});
+}
+
+function openFbSharer(url, title, descr, image, winWidth, winHeight) {
+	winWidth = (typeof winWidth !== 'undefined' ? winWidth : 520);
+	winHeight = (typeof winHeight !== 'undefined' ? winHeight : 350);
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    var sharerUrl = 'http://www.facebook.com/sharer.php?s=100&p[title]=' + urlEncode(title) + '&p[summary]=' + urlEncode(descr) + '&p[url]=' + url + '&p[images][0]=' + image;
+    alert(sharerUrl);
+    window.open(
+    	sharerUrl, 
+    	'sharer', 
+    	'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight
+    );
 }
