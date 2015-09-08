@@ -8,7 +8,7 @@ function stripTrailingSlashes(str) {
 }
 
 var appUrl = stripTrailingSlashes( location.protocol + '//' + location.host + location.pathname );
-var imageMakerUrl = appUrl + 'title-image.php';
+var imageMakerUrl = appUrl + '/title-image.php';
 
 
 console.log("\i\n wordBank: "); console.log(wordBank);

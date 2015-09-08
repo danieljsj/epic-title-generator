@@ -40,7 +40,7 @@
 
 		$gd = extension_loaded('gd');
 
-		$appUrl = 'http://EpicTitleGenerator.com';
+		$appUrl = 'http://epictitlegenerator.com';
 
 		$imgMakerUrl = $appUrl.'/title-image.php';
 
@@ -97,7 +97,7 @@
 </head>
 <body class="form-inline">
 	<h1 id="page-title" class="text-center" style="text-transform:none; opacity:.5;"><b style="font-size:1.75em;">
-		<span>Epic Title Generator</span>
+		<span><a href="<?= $appUrl ?>">Epic Title Generator</a></span>
 	</b></h1>
 	<div id="output">
 		<div id="epic-title">
