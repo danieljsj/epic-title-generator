@@ -93,6 +93,9 @@ body {
 }
 
 
-.form-inline .form-group input {
-	width:220px;
+.form-inline input {
+	width:240px !important;
+}
+.form-inline input.input-lg {
+	/*width:320px !important;*/
 }

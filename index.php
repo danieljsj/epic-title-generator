@@ -116,7 +116,9 @@
 	</div>
 	<div id="controls">
 		<div id="seed-name">
-			<label>Your (or your friend's) Name: <input id="seed" type="text" value="<?= _sp($_GET['input_name']) ?>" class="form-control"></label>
+			<label>Your (or your friend's) Name: 
+				<input id="seed" type="text" value="<?= _sp($_GET['input_name']) ?>" class="form-control input-lg text-center" />
+			</label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
 				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
 			</button>
@@ -129,7 +131,7 @@
 		<button onclick="openEpicFbSharer()" type="button" class="btn btn-info btn-md"><b>
 			Share <!-- your -->this Epic Title on Facebook
 		</b></button>
-		<a id="image-link" href="<?= $og_fb_image ?>" class="btn btn-default" role="button">Download Image</a>
+		<a id="image-link" target="_blank" href="<?= $og_fb_image ?>" class="btn btn-default" role="button">Download Image</a>
 	</div>
 </body>
 </html>

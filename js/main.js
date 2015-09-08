@@ -217,7 +217,7 @@ function openFbSharer(url) {
     var winTop = (screen.height / 2) - (winHeight / 2);
     var winLeft = (screen.width / 2) - (winWidth / 2);
     var sharerUrl = 'http://www.facebook.com/sharer.php?s=100&p[url]=' + url;
-    alert(sharerUrl);
+    console.log(sharerUrl);
     window.open(
     	sharerUrl, 
     	'sharer', 
