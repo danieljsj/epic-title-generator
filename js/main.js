@@ -237,12 +237,18 @@ function getFullTitleText(){
 		// console.log(innerHTML);
 		if (innerHTML) fullTitleText += innerHTML + ' ';
 	});
-	return fullTitleText;
+	return fullTitleText.SpToUS();
 }
 function getSeedName(){
 	if (! currentTitleIsNameBased ) return false;
-	return $('#seed').val();
+	return $('#seed').val().SpToUS();
 }
+String.prototype.UStoSp = function(){
+	return this.replace(/_/g,' ');
+};
+String.prototype.SpToUS = function(){
+	return this.replace(/ /g,'_');
+};
 function openEpicFbSharer(){
 	openFbSharer( getCurrentTitleUrl() );
 }
