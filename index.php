@@ -42,31 +42,31 @@
 
 		$appUrl = 'http://EpicTitleGenerator.com';
 
-		$epic_title_og_fb_image = ( isset($_GET['epic_title']) && $_GET['epic_title'] ) ?
-			$appUrl.'/title-image.php' . '?epic_title='.$_GET['epic_title'] . '&input_name='.$_GET['input_name']
-			: '';
-		if( isset($_GET['input_name']) && $_GET['input_name'] ){
-			
+		$imgMakerUrl = $appUrl.'/title-image.php'
+
+		if ( isset($_GET['input_name']) && $_GET['input_name'] ) {
+
+			$queryString = '?input_name=' . $_GET['input_name'] . '&=epic_title' . $_GET['epic_title'];
+
 			$og_title = _sp($_GET['input_name']).'\'s epic title | &copy; Epic Title Generator';
 			$og_description = "What's YOUR epic title?";
-			$og_url = $appUrl . '/?input_name=' . $_GET['input_name'] . '&=epic_title' . $_GET['epic_title'];
-			$og_fb_image = $epic_title_og_fb_image;
 
-			echo '<script>currentTitleIsNameBased = true;</script>';
+			?>  <script>currentTitleIsNameBased = true;</script>  <?php
+
 
 		} elseif (isset($_GET['epic_title']) && $_GET['epic_title']) {
+
+			$queryString = '?=epic_title' . $_GET['epic_title'];
 			
 			$og_title = 'Epic Title Generator';
 			$og_description = "Where epic titles are born!";
-			$og_url = $appUrl . '/?epic_title=' . $_GET['epic_title'];
-			$og_fb_image = $epic_title_og_fb_image;
 		
 		} else {
 
+			$queryString = ''
+
 			$og_title = 'Epic Title Generator';
 			$og_description = "Where epic titles are born!";
-			$og_url = $appUrl;
-			$og_fb_image = $appUrl . '/media/banner.png';
 
 		}
 
@@ -76,9 +76,9 @@
 	<!-- Meta -->
 		<!-- Begin Facebook tags -->
 	<meta property="og:title" content="<?= $og_title ?>" />
-	<meta property="og:url" content="<?= $og_url ?>" />
+	<meta property="og:url" content="<?= $appUrl . $queryString ?>" />
 	<meta property="og:description" content="<?= $og_description ?>" />
-	<meta property="og:image" content="<?= $og_fb_image ?>" />
+	<meta property="og:image" content="<?= $imgMakerUrl . $queryString ?>" />
 	<!--<meta property="fb:page_id" content="Your facebook page ID" />-->
 	<meta property="og:type" content="website" />
 		<!-- End Facebook tags -->
