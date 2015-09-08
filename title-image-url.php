@@ -43,7 +43,8 @@ class TitleImage {
 		
 		$titleImageFilename = "title-images/".$layout->imgFolderSlug.'/'.self::toSlug($titleStr).".png";
 
-		if ( /*true || */!file_exists($titleImageFilename)) {
+		// DEBUG SWITCH "true ||"
+		if ( true || !file_exists($titleImageFilename)) {
 			$dirPath = "title-images/".$layout->imgFolderSlug.'/';
 			if( !is_dir($dirPath) ){
 				mkdir($dirPath); chmod($dirPath, 0777);
