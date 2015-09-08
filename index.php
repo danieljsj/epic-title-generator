@@ -48,7 +48,7 @@
 
 			$queryString = '?input_name=' . $_GET['input_name'] . '&epic_title=' . $_GET['epic_title'];
 
-			$og_title = _sp($_GET['input_name']).'\'s epic title | &copy; Epic Title Generator';
+			$og_title = _sp($_GET['input_name']).'\'s epic title | Epic Title Generator';
 			$og_description = "What's YOUR epic title?";
 
 			?>  <script>currentTitleIsNameBased = true;</script>  <?php
