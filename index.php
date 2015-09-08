@@ -42,8 +42,9 @@
 
 		$appUrl = 'http://EpicTitleGenerator.com';
 
-		$epic_title_og_fb_image = $appUrl.'/title-image.php' . '?epic_title='.$_GET['epic_title'] . '&input_name='.$_GET['input_name'];
-
+		$epic_title_og_fb_image = ( isset($_GET['epic_title']) && $_GET['epic_title'] ) ?
+			$appUrl.'/title-image.php' . '?epic_title='.$_GET['epic_title'] . '&input_name='.$_GET['input_name']
+			: '';
 		if( isset($_GET['input_name']) && $_GET['input_name'] ){
 			
 			$og_title = _sp($_GET['input_name']).'\'s epic title | &copy; Epic Title Generator';
@@ -91,7 +92,7 @@
 	-->
 		<!-- End Twitter tags -->
 </head>
-<body>
+<body class="form-inline">
 	<h1 id="page-title" class="text-center" style="text-transform:none; opacity:.5;"><b style="font-size:1.75em;">
 		<span>Epic Title Generator</span>
 	</b></h1>
@@ -111,7 +112,7 @@
 		</div>
 	</div>
 	<div id="controls">
-		<div id="seed-name" class="form-inline">
+		<div id="seed-name">
 			<label>Your (or your friend's) Name: <input id="seed" type="text" value="<?= _sp($_GET['input_name']) ?>" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
 				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
@@ -122,8 +123,9 @@
 		</button>
 	</div>
 	<div id="sharing">
+		Image url: <input id="image-url" class="form-control" readonly="true" value="<?= $epic_title_og_fb_image ?>">
 		<button onclick="openEpicFbSharer()" type="button" class="btn btn-default btn-md"><b>
-			Share <!-- your -->this Epic Title on Facebook! &raquo;
+			Share <!-- your -->this Epic Title on Facebook!
 		</b></button>
 	</div>
 </body>
