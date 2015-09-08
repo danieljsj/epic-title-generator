@@ -11,8 +11,10 @@ function randomize(seed) {
 
 	if (seed){
 		Math.seedrandom( seed );
+		currentTitleIsNameBased = true;
 	} else {
 		Math.seedrandom( new Date().getTime() );
+		currentTitleIsNameBased = false;
 	}
 
 	// REFERENCE:

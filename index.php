@@ -30,12 +30,48 @@
 
 
 
+
+	<!-- Dynamic -->
+	<script>var currentTitleIsNameBased = false;</script>
+
+	<?
+
+	$rootUrl = 'http://EpicTitleGenerator.com';
+
+	if( isset($_GET['seed_name']) && $_GET['seed_name'] ){
+		
+		$og_title = $_GET['seed_name'].'\'s title on the Epic Title Generator';
+		$og_description = "What's YOUR epic title?";
+		$og_url = $rootUrl.'/?epic_title='.$_GET['epic_title'].'&seed_name='.$_GET['seed_name'];
+		$og_image = $rootUrl.require('title-image-url.php');
+
+		?><script>currentTitleIsNameBased = true;</script><?
+
+	} elseif (isset($_GET['epic_title']) && $_GET['epic_title']) {
+		
+		$og_title = 'Epic Title Generator';
+		$og_description = "Where epic titles are born!"
+		$og_url = $rootUrl.'/?epic_title='.$_GET['epic_title'];
+		$og_image = $rootUrl.'/'.require('title-image-url.php');
+	
+	} else {
+
+		$og_title = 'Epic Title Generator';
+		$og_description = "Where epic titles are born!"
+		$og_url = $rootUrl;
+		$og_image = $rootUrl.'/media/banner.png';
+
+	}
+
+	?>
+
+
 	<!-- Meta -->
 		<!-- Begin Facebook tags -->
-	<meta property="og:title" content="Epic Title Generator" />
-	<meta property="og:url" content="http://EpicTitleGenerator.com/?epic_title=<?= $_GET['epic_title'] ?>" />
-	<meta property="og:description" content="This is where you make your crazy epic titles!" />
-	<meta property="og:image" content="http://EpicTitleGenerator.com/<?= require('title-image-url.php') ?>" />
+	<meta property="og:title" content="<?= $og_title ?>" />
+	<meta property="og:url" content="<?= $og_url ?>" />
+	<meta property="og:description" content="<?= $og_description ?>" />
+	<meta property="og:image" content="<?= $og_image ?>" />
 	<!--<meta property="fb:page_id" content="Your facebook page ID" />-->
 	<meta property="og:type" content="website" />
 		<!-- End Facebook tags -->
