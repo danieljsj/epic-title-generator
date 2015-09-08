@@ -126,10 +126,10 @@
 		</button>
 	</div>
 	<div id="sharing">
-		Image url: <input id="image-url" class="form-control" readonly="true" value="<?= $og_fb_image ?>">
-		<button onclick="openEpicFbSharer()" type="button" class="btn btn-default btn-md"><b>
-			Share <!-- your -->this Epic Title on Facebook!
+		<button onclick="openEpicFbSharer()" type="button" class="btn btn-info btn-md"><b>
+			Share <!-- your -->this Epic Title on Facebook
 		</b></button>
+		<a id="image-link" href="<?= $og_fb_image ?>" class="btn btn-default" role="button">Download Image</a>
 	</div>
 </body>
 </html>

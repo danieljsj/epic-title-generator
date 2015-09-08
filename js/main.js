@@ -8,7 +8,7 @@ function stripTrailingSlashes(str) {
 }
 
 var appUrl = stripTrailingSlashes( location.protocol + '//' + location.host + location.pathname );
-var imageMakerUrl = appUrl + '/title-image.php';
+var imageMakerUrl = 'http://epictitlegenerator.com/title-image.php';
 
 
 console.log("\i\n wordBank: "); console.log(wordBank);
@@ -266,6 +266,6 @@ function updatePageUrl(){
 	history.pushState( {}, '', appUrl+getQueryString() );
 }
 function updateImageUrl(){
-	$('#image-url').val(imageMakerUrl+getQueryString() );
+	$('#image-link').attr("href", imageMakerUrl+getQueryString() );
 }
 
