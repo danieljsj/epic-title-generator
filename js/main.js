@@ -1,5 +1,13 @@
 // note that wordBank va-riable is available
 
+function stripTrailingSlashes(str) {
+    if(str.substr(-1) === '/') {
+        return stripTrailingSlashes(str.substr(0, str.length - 1));
+    }
+    return str;
+}
+
+var appUrl = stripTrailingSlashes( location.protocol + '//' + location.host + location.pathname );
 
 console.log("\i\n wordBank: "); console.log(wordBank);
 
@@ -133,16 +141,16 @@ function randomize(seed) {
 
 	// TEXT COMPILATION AND USAGE:
 
-	var fullTitleText;
+	// var fullTitleText;
 	for (var i = 0; i < elements.length; i++) {
 		// sets the text of each browser element
 		document.getElementById(elements[i].hyphenCase).innerHTML = texts[elements[i].camelCase];
-		if (texts[elements[i].camelCase]){
-			fullTitleText += texts[elements[i].camelCase] + ' ';
-		}
+		// if (texts[elements[i].camelCase]){
+		// 	fullTitleText += texts[elements[i].camelCase] + ' ';
+		// }
 	};
 
-
+	updatePageUrl();
 
 	// WHOLE TEXT-GLOB USAGE:
 	// var fullTitleText = '';
@@ -235,11 +243,21 @@ function getSeedName(){
 	if (! currentTitleIsNameBased ) return false;
 	return $('#seed').val();
 }
-
 function openEpicFbSharer(){
-	openFbSharer(
-		'http://EpicTitleGenerator.com'
-		+ '/?epic_title='+getFullTitleText() 
-		+ (  getSeedName()  ?  '&seed_name='+getSeedName()  :  ''  ) 
-	);
+	openFbSharer( getCurrentTitleUrl() );
 }
+function getCurrentTitleUrl(){
+	titlePath = getTitlePath();
+	return appUrl + titlePath;
+}
+function getTitlePath(){
+	return '/' + 
+		( getFullTitleText() ? '?epic_title='+getFullTitleText() +
+			( getSeedName()  ?  '&seed_name='+getSeedName()  :  '' )
+		: '' )
+	;
+}
+function updatePageUrl(){
+	history.pushState( {}, '', appUrl+getTitlePath() );
+}
+
