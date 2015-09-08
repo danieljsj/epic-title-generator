@@ -150,7 +150,8 @@ $layoutKey = ( isset($_GET['layout']) ? $_GET['layout'] : 'facebook' );
 if ($titleStr) {
 	$src = TitleImage::getImgSrc($titleStr, $layoutKey);
 	// echo $src; // if this is output, then it breaks title-image.php.
-	return $src;
 } else {
-	throw new Exception('Error Processing Request; no "epic_title" value was present in the requested url', 1);
+	$src = "media/banner.png";
+	// throw new Exception('Error Processing Request; no "epic_title" value was present in the requested url', 1); // was breaking homepage
 }
+return $src;
