@@ -108,16 +108,16 @@
 		<div id="seed-name" class="form-inline">
 			<label>Your Name: <input id="seed" type="text" value="" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
-				Convert my Name into an Epic Title
+				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
 			</button>
 		</div>
 		<button  id="randomize-button" onclick="randomize()" type="button" class="btn btn-default btn-md">
-			Generate a Random Epic Title
+			<!-- Generate a  -->Random Epic Title
 		</button>
 	</div>
 	<div id="sharing">
 		<button onclick="openEpicFbSharer()" type="button" class="btn btn-default btn-md"><b>
-			Share your Epic Title on Facebook! &raquo;
+			Share <!-- your -->this Epic Title on Facebook! &raquo;
 		</b></button>
 	</div>
 </body>
