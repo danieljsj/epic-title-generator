@@ -187,7 +187,7 @@ function seededRandom(){
 	if (seed) {
 		randomize(seed)
 	} else {
-		alert("Please enter your name to enable seeded random.");
+		alert("Please enter your name first.");
 	}
 }
 

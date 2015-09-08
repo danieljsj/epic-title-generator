@@ -72,15 +72,17 @@
 		<div id="seed-name" class="form-inline">
 			<label>Your Name: <input id="seed" type="text" value="" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
-				Seeded Random
+				Convert my Name into an Epic Title
 			</button>
 		</div>
 		<button  id="randomize-button" onclick="randomize()" type="button" class="btn btn-default btn-md">
-			Pure Random
+			Generate a Random Epic Title
 		</button>
 	</div>
 	<div id="sharing">
-		<span onclick="openEpicFbSharer()" class="glyphicon glyphicon-facebook-WHICH-DOESNT-EXIST"><b>Share your epic title on Facebook! &raquo;</span>
+		<button onclick="openEpicFbSharer()" type="button" class="btn btn-default btn-md"><b>
+			Share your Epic Title on Facebook! &raquo;
+		</b></button>
 	</div>
 </body>
 </html>
