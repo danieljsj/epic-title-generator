@@ -1,6 +1,8 @@
-HOST="wordwideweb.co"
-HOST_USER="wordwide"
-HOST_PATH="10x.agency/html/games/epic-title-generator"
+HOST="epictitlegenerator.com"
+HOST_USER="root"
+HOST_PATH="/var/www/epictitlegenerator.com/public_html/"
+WEBSERVER_DIR="title-images"
+APP_URL="http://EpicTitleGenerator.com"
 
 echo
 echo REMOTE SYNCHRONIZE FILES:
@@ -16,8 +18,13 @@ cd $HOST_PATH
 find * -type d -print0 | xargs -0 chmod -v 0755 # for directories
 find . -type f -print0 | xargs -0 chmod -v 0644 # for files
 
+find $WEBSERVER_DIR -type d -print0 | xargs -0 chmod -v 0777 # for directories
+find $WEBSERVER_DIR -type f -print0 | xargs -0 chmod -v 0666 # for files
+
+chmod 0777 $WEBSERVER_DIR
+
 '"
 
 echo
-echo "app is now visible at http://10x.agency/games/epic-title-generator/"
+echo "app is now visible at $APP_URL"
 echo
