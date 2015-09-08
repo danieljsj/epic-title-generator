@@ -46,7 +46,7 @@
 			
 			$og_title = $_GET['seed_name'].'\'s epic title | &copy; Epic Title Generator';
 			$og_description = "What's YOUR epic title?";
-			$og_url = $appUrl . '/?epic_title=' . $_GET['epic_title'] . '&seed_name=' . $_GET['seed_name'];
+			$og_url = $appUrl . '/?seed_name=' . $_GET['seed_name'] . '&=epic_title' . $_GET['epic_title'];
 			$og_fb_image = $epic_title_og_fb_image;
 
 			echo '<script>currentTitleIsNameBased = true;</script>';
