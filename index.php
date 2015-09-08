@@ -80,7 +80,7 @@
 		</button>
 	</div>
 	<div id="sharing">
-		<span onclick="openEpicFbSharer()" class="glyphicon glyphicon-facebook">FACEBOOK</span>
+		<span onclick="openEpicFbSharer()" class="glyphicon glyphicon-facebook-WHICH-DOESNT-EXIST"><b>Share your epic title on Facebook! &raquo;</span>
 	</div>
 </body>
 </html>
