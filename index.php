@@ -34,34 +34,34 @@
 	<!-- Dynamic -->
 	<script>var currentTitleIsNameBased = false;</script>
 
-	<?
+	<?php
 
-	$rootUrl = 'http://EpicTitleGenerator.com';
+		$rootUrl = 'http://EpicTitleGenerator.com';
 
-	if( isset($_GET['seed_name']) && $_GET['seed_name'] ){
+		if( isset($_GET['seed_name']) && $_GET['seed_name'] ){
+			
+			$og_title = $_GET['seed_name'].'\'s title on the Epic Title Generator';
+			$og_description = "What's YOUR epic title?";
+			$og_url = $rootUrl . '/?epic_title=' . $_GET['epic_title'] . '&seed_name=' . $_GET['seed_name'];
+			$og_image = $rootUrl . '/' . require('title-image-url.php');
+
+			?><script>currentTitleIsNameBased = true;</script><?
+
+		} elseif (isset($_GET['epic_title']) && $_GET['epic_title']) {
+			
+			$og_title = 'Epic Title Generator';
+			$og_description = "Where epic titles are born!";
+			$og_url = $rootUrl . '/?epic_title=' . $_GET['epic_title'];
+			$og_image = $rootUrl . '/' . require('title-image-url.php');
 		
-		$og_title = $_GET['seed_name'].'\'s title on the Epic Title Generator';
-		$og_description = "What's YOUR epic title?";
-		$og_url = $rootUrl.'/?epic_title='.$_GET['epic_title'].'&seed_name='.$_GET['seed_name'];
-		$og_image = $rootUrl.require('title-image-url.php');
+		} else {
 
-		?><script>currentTitleIsNameBased = true;</script><?
+			$og_title = 'Epic Title Generator';
+			$og_description = "Where epic titles are born!";
+			$og_url = $rootUrl;
+			$og_image = $rootUrl . '/media/banner.png';
 
-	} elseif (isset($_GET['epic_title']) && $_GET['epic_title']) {
-		
-		$og_title = 'Epic Title Generator';
-		$og_description = "Where epic titles are born!"
-		$og_url = $rootUrl.'/?epic_title='.$_GET['epic_title'];
-		$og_image = $rootUrl.'/'.require('title-image-url.php');
-	
-	} else {
-
-		$og_title = 'Epic Title Generator';
-		$og_description = "Where epic titles are born!"
-		$og_url = $rootUrl;
-		$og_image = $rootUrl.'/media/banner.png';
-
-	}
+		}
 
 	?>
 
@@ -106,7 +106,7 @@
 	</div>
 	<div id="controls">
 		<div id="seed-name" class="form-inline">
-			<label>Your Name: <input id="seed" type="text" value="" class="form-control"></label>
+			<label>Your Name: <input id="seed" type="text" value="<?= $_GET['seed_name'] ?>" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
 				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
 			</button>
