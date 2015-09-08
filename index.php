@@ -36,17 +36,19 @@
 
 	<?php
 
+		function _sp($str){return str_replace('_', ' ', $str);}
+
 		$gd = extension_loaded('gd');
 
 		$appUrl = 'http://EpicTitleGenerator.com';
 
-		$epic_title_og_fb_image = $appUrl.'/title-image.php' . '?epic_title='.$_GET['epic_title'] . '&seed_name='.$_GET['seed_name'];
+		$epic_title_og_fb_image = $appUrl.'/title-image.php' . '?epic_title='.$_GET['epic_title'] . '&input_name='.$_GET['input_name'];
 
-		if( isset($_GET['seed_name']) && $_GET['seed_name'] ){
+		if( isset($_GET['input_name']) && $_GET['input_name'] ){
 			
-			$og_title = $_GET['seed_name'].'\'s epic title | &copy; Epic Title Generator';
+			$og_title = _sp($_GET['input_name']).'\'s epic title | &copy; Epic Title Generator';
 			$og_description = "What's YOUR epic title?";
-			$og_url = $appUrl . '/?seed_name=' . $_GET['seed_name'] . '&=epic_title' . $_GET['epic_title'];
+			$og_url = $appUrl . '/?input_name=' . $_GET['input_name'] . '&=epic_title' . $_GET['epic_title'];
 			$og_fb_image = $epic_title_og_fb_image;
 
 			echo '<script>currentTitleIsNameBased = true;</script>';
@@ -96,7 +98,7 @@
 	<div id="output">
 		<div id="epic-title">
 			<b>
-				<span id="position-article"><?=$_GET['epic_title']?></span>
+				<span id="position-article"><?= _sp($_GET['epic_title']) ?></span>
 				<span id="position-adjective"></span><!-- maybe -->
 				<span id="position-noun"></span>
 				<span id="position-domain-preposition"></span>
@@ -110,7 +112,7 @@
 	</div>
 	<div id="controls">
 		<div id="seed-name" class="form-inline">
-			<label>Your (or your friend's) Name: <input id="seed" type="text" value="<?= $_GET['seed_name'] ?>" class="form-control"></label>
+			<label>Your (or your friend's) Name: <input id="seed" type="text" value="<?= _sp($_GET['input_name']) ?>" class="form-control"></label>
 			<button onclick="seededRandom()" type="button" class="btn btn-default btn-md">
 				Convert <!-- my  -->Name <!-- into -->to <!-- an  -->Epic Title
 			</button>

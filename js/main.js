@@ -237,17 +237,17 @@ function getFullTitleText(){
 		// console.log(innerHTML);
 		if (innerHTML) fullTitleText += innerHTML + ' ';
 	});
-	return fullTitleText.SpToUS();
+	return fullTitleText.sp_();
 }
 function getSeedName(){
 	if (! currentTitleIsNameBased ) return false;
-	return $('#seed').val().SpToUS();
+	return $('#seed').val().sp_();
 }
-String.prototype.UStoSp = function(){
-	return this.replace(/_/g,' ');
-};
-String.prototype.SpToUS = function(){
-	return this.replace(/ /g,'_');
+// String.prototype._sp = function(){ // not in use; so far javascript always encodes and php always decodes.
+// 	return this.trim().replace(/_/g,' ');
+// };
+String.prototype.sp_ = function(){
+	return this.trim().replace(/ /g,'_');
 };
 function openEpicFbSharer(){
 	openFbSharer( getCurrentTitleUrl() );
@@ -259,7 +259,7 @@ function getCurrentTitleUrl(){
 function getTitlePath(){
 	if ( getFullTitleText() ){
 		if ( getSeedName() ){
-			return '/?seed_name='+getSeedName()+'&epic_title='+getFullTitleText();
+			return '/?input_name='+getSeedName()+'&epic_title='+getFullTitleText();
 		} else {
 			return '/?epic_title='+getFullTitleText();
 		}
